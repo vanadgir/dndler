@@ -27,7 +27,7 @@ const CharacterEquipment = () => {
       collapsed={false}
     >
       <section className="characterEquipmentSection">
-        <ul className="characterEquipment-list">{equipmentList}</ul>
+        <ul className="characterEquipment-list no-dec">{equipmentList}</ul>
       </section>
     </Collapsible>
   );

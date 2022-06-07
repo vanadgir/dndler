@@ -27,7 +27,7 @@ const Collapsible = (props) => {
           props.category +
           "-option " +
           (isCollapsed ? "collapsed" : "expanded") +
-          " optionSwitch-container categoryCollapse"
+          " OptionSwitch-container categoryCollapse"
         }
         id={props.id}
         value={props.value}
@@ -43,7 +43,7 @@ const Collapsible = (props) => {
         style={{ display: isCollapsed && !props.neverBar ? "block" : "none" }}
       />
       <div
-        className={`options-table ${
+        className={`Collapsible-children ${
           props.category
         }-table collapse-content category ${
           isCollapsed ? "collapsed" : "expanded"

@@ -27,7 +27,7 @@ const CharacterSkills = () => {
       collapsed={false}
     >
       <section className="characterSkillSection">
-        <ul className="characterSkills">{skillsMap}</ul>
+        <ul className="characterSkills no-dec">{skillsMap}</ul>
       </section>
     </Collapsible>
   );

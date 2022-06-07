@@ -1,0 +1,40 @@
+h5.optionsNotice {
+  margin: 5px;
+}
+
+.clearButton.OptionButton-container {
+  margin: 0 auto
+
+  label {
+    font-size: 10pt;
+  }
+}
+
+h5.characterCount {
+  margin: 0 auto;
+}
+
+section.fileButtonSection {
+  label {
+    display: inline-block;
+    img.fileButtons {
+      object-fit: contain;
+      width: 20px;
+      height: 20px;
+
+      @include for-tablet-portrait-up {
+        width: 30px;
+        height: 30px;
+      }
+    }
+  }
+}
+
+h1.characterName {
+  font-size: 36pt;
+  margin: 0 auto;
+}
+
+h2.characterDescriptor {
+  font-size: 14pt;
+}
