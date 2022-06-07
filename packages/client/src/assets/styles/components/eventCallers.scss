@@ -1,8 +1,6 @@
 .OptionSwitch-container,
 .OptionButton-container,
 .UploadButton-container {
-  flex: 0 0 21%;
-
   label {
     padding: 4px;
     transition: background-color 0.1s 0s;
@@ -52,10 +50,6 @@
   max-width: 100vw;
   flex-wrap: wrap;
   margin: 0 10px;
-
-  :first-child {
-    margin-top: 4px;
-  }
 }
 
 .category.collapsed {

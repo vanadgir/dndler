@@ -168,7 +168,7 @@ const CustomOptionsPage = (props) => {
   }, []);
 
   return (
-    <>
+    <div className="CustomOptions">
       <Collapsible
         id="sourceCollapsible"
         value="SOURCE MATERIALS"
@@ -257,7 +257,7 @@ const CustomOptionsPage = (props) => {
         id={"customRoll"}
         className={"customRoll"}
       />
-    </>
+    </div>
   );
 };
 
