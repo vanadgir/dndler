@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from "react";
 import logo from "./logo.svg";
-import "./App.css";
+import "./App.scss";
 import HomePage from "./containers/Home";
 import CustomOptionsPage from "./containers/CustomOptions";
 import CharacterSheet from "./containers/CharacterSheet";
