@@ -1,0 +1,35 @@
+{
+  "name": "dndler",
+  "version": "0.0.1",
+  "description": "tool for creating improvized game materials for dungeons & dragons",
+  "main": "app.js",
+  "type": "module",
+  "homepage": "https://github.com/vanadgir/dndler#readme",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/vanadgir/dndler.git"
+  },
+  "bugs": {
+    "url": "https://github.com/vanadgir/dndler/issues"
+  },
+  "keywords": [
+    "dnd",
+    "ttrpg",
+    "dindl",
+    "mins",
+    "generator",
+    "games"
+  ],
+  "author": "Varun Nadgir, Tyler Brandt, Graham Gilpatric",
+  "license": "MIT",
+  "scripts": {
+    "start": "yarn workspaces foreach -pi run dev",
+    "build": "yarn workspaces foreach -pti run build"
+  },
+  "packageManager": "yarn@3.1.1",
+  "workspaces": {
+    "packages": [
+      "packages/*"
+    ]
+  }
+}

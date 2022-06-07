@@ -1,0 +1,55 @@
+import {
+    getNames
+} from './reports.js';
+
+let names = getNames();
+
+console.log("");
+console.log("Data Summary");
+console.log("Sourcebooks: " + String(names["Sourcebooks"].length));
+console.log("");
+console.log("RACES");
+console.log("Sourcebook Races: " + String(names["Sourcebook Races"].length));
+console.log("Data Races: " + String(names["Data Races"].length));
+console.log("");
+console.log("Nonmatching Race(s):");
+console.log(names["Sourcebook Races"].filter(x => !names["Data Races"].includes(x)));
+console.log(names["Data Races"].filter(x => !names["Sourcebook Races"].includes(x)));
+console.log("");
+console.log("Race Traits: " + String(names["Race Traits"].length));
+console.log("Data Race Traits: " + String(names["Data Race Traits"].length));
+console.log("");
+console.log("Nonmatching Race Trait(s):");
+console.log(names["Race Traits"].filter(x => !names["Data Race Traits"].includes(x)));
+console.log(names["Data Race Traits"].filter(x => !names["Race Traits"].includes(x)));
+console.log("");
+console.log("CLASSES");
+console.log("Sourcebook Classes: " + String(names["Sourcebook Classes"].length));
+console.log("Data Classes: " + String(names["Data Classes"].length));
+console.log("");
+console.log("Nonmatching Classes(s):");
+console.log(names["Sourcebook Classes"].filter(x => !names["Data Classes"].includes(x)));
+console.log(names["Data Classes"].filter(x => !names["Sourcebook Classes"].includes(x)));
+console.log("");
+//console.log("Class Traits: " + String(names["Class Traits"].length));
+//console.log("Data Class Traits: " + String(names["Data Class Traits"].length));
+//console.log("");
+//console.log("Nonmatching Class Trait(s):");
+//console.log(names["Class Traits"].filter(x => !names["Data Class Traits"].includes(x)));
+//console.log(names["Data Class Traits"].filter(x => !names["Class Traits"].includes(x)));
+// console.log("");
+console.log("BACKGROUNDS");
+console.log("Sourcebook Backgrounds: " + String(names["Sourcebook Backgrounds"].length));
+console.log("Data Backgrounds: " + String(names["Data Backgrounds"].length));
+console.log("");
+console.log("Nonmatching Backgrounds(s):");
+console.log(names["Sourcebook Backgrounds"].filter(x => !names["Data Backgrounds"].includes(x)));
+console.log(names["Data Backgrounds"].filter(x => !names["Sourcebook Backgrounds"].includes(x)));
+console.log("");
+console.log("Background Traits: " + String(names["Background Traits"].length));
+console.log("Data Background Traits: " + String(names["Data Background Traits"].length));
+console.log("");
+console.log("Nonmatching Background Trait(s):");
+console.log(names["Background Traits"].filter(x => !names["Data Background Traits"].includes(x)));
+console.log(names["Data Background Traits"].filter(x => !names["Background Traits"].includes(x)));
+console.log("");

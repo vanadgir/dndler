@@ -1,0 +1,647 @@
+/* GLOBAL */
+
+html,body {
+  overflow-x: hidden;
+}
+
+h2 {
+  font-size: 0.8em;
+}
+
+h3 {
+  font-size: 1em;
+  margin-top: 0px;
+}
+
+h4 {
+  font-size: 0.8em;
+  margin: 0;
+}
+
+h5 {
+  font-size: 0.6em;
+}
+
+hr
+{
+  background-color: rgba(110, 110, 110, 0.6);
+  border: none;
+  height: 1px;
+}
+
+@media only screen and (min-width: 768px)
+{
+  /* FOR DESKTOP */
+  h2 {
+    font-size: 1.6em;
+  }
+
+  h3 {
+    font-size: 1.4em;
+  }
+
+  h4 {
+    font-size: 1.2em;
+  }
+
+  h5 {
+    font-size: 1em;
+  }
+}
+
+.inline {
+  display: inline;
+}
+
+.inline-block {
+  display: inline-block;
+}
+
+.grid-center {
+  align-self: center;
+}
+
+.leftAlign
+{
+  text-align: left;
+}
+
+.rightAlign
+{
+  text-align: right;
+}
+
+.threeColumn {
+  display: flex;
+  justify-content: space-between;
+}
+
+.thirdColumn {
+  margin: 0 auto;
+  max-width: 30%;
+}
+
+.category.collapsed {
+  height: 0;
+  overflow: hidden;
+}
+
+.faded {
+  background-color: rgba(110, 110, 110, 0.3)
+}
+
+/* END GLOBAL */
+
+/* APP */
+
+.App {
+  text-align: center;
+}
+
+.App-logo {
+  height: 10vmin;
+  pointer-events: none;
+}
+
+@media (prefers-reduced-motion: no-preference) {
+  .App-logo {
+    animation: App-logo-spin infinite 3s cubic-bezier(0.63, -0.01, 0.2, 1);
+  }
+}
+
+.App-header {
+  background-color: #282c34;
+  min-height: 10vh;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  font-size: calc(10px + 2vmin);
+  color: white;
+  margin-bottom: 8px;
+  padding-top: 20px;
+}
+
+.App-header h1 {
+  font-size: larger;
+}
+
+.App-link {
+  color: #61dafb;
+}
+
+/* END APP */
+
+/* EVENT CALLERS */
+
+.optionSwitch-container,
+.optionButton-container,
+.uploadButton-container {
+  flex: 0 0 21%;
+}
+
+.optionSwitch-container {
+  margin: 8px 5px;
+}
+
+.optionButton-container,
+.uploadButton-container {
+  margin: 16px;
+}
+
+.optionSwitch-container label,
+.optionButton-container label,
+.uploadButton-container label {
+  padding: 4px;
+  transition: background-color 0.1s 0s;
+  background-color: #eee;
+  border: solid 1px #ddd;
+  white-space: nowrap;
+}
+
+.optionButton-container label {
+  font-size: 16pt;
+}
+
+@media only screen and (min-width: 768px)
+{
+  /* FOR DESKTOP */
+  .optionButton-container label,
+  .uploadButton-container label {
+    font-size: 24pt;
+  }
+}
+
+.optionSwitch-container input[type=checkbox] + label:hover,
+.optionButton-container button + label:hover,
+.uploadButton-container input[type=file] + label:hover {
+  background-color: rgb(151, 151, 151);
+}
+
+.optionSwitch-container input[type=checkbox].hidden,
+.optionButton-container button.hidden,
+.uploadButton-container input[type=file].hidden {
+  opacity: 0;
+  position: absolute;
+  z-index: -3;
+}
+
+.optionSwitch-container input[type=checkbox]:checked + label,
+.optionButton-container button:active + label,
+.uploadButton-container input[type=file]:active + label {
+  background-color: #494f5a;
+  color: #fff;
+}
+
+.optionSwitch-container input[type=checkbox]:checked + label:hover,
+.optionButton-container button:active + label:hover,
+.uploadButton-container input[type=file]:active + label:hover {
+  background-color: #282c34;
+}
+
+.feature.optionSwitch-container label,
+.spell.optionSwitch-container label {
+  white-space: normal;
+}
+
+.feature.optionSwitch-container input[type=checkbox] + label:hover,
+.feature.optionSwitch-container label:hover,
+.spell.optionSwitch-container input[type=checkbox] + label:hover,
+.spell.optionSwitch-container label:hover
+{
+  background-color: rgba(0, 0, 0, 0);
+}
+
+.feature.optionSwitch-container input[type=checkbox]:checked + label,
+.spell.optionSwitch-container input[type=checkbox]:checked + label
+{
+  background-color: rgba(0, 0, 0, 0);
+  color: #000;
+}
+
+.feature.optionSwitch-container + input[type=checkbox]:checked,
+.spell.optionSwitch-container + input[type=checkbox]:checked
+{
+  background-color: rgba(110, 110, 110, 0.2);
+}
+
+.options-table.feature-table,
+.options-table.spell-table {
+  display: block;
+}
+
+.options-table.feature-table.collapse-content.expanded,
+.options-table.spell-table.collapse-content.expanded {
+  background-color: rgba(110, 110, 110, 0.2);
+}
+
+div.feature-option.optionSwitch-container,
+div.spell-option.optionSwitch-container {
+  text-align: center;
+  border: 0;
+  font-weight: bold;
+  margin: 0;
+  white-space: normal;
+}
+
+div.feature.optionSwitch-container.expanded,
+div.spell.optionSwitch-container.expanded {
+  background-color: rgba(110, 110, 110, 0.3);
+}
+
+.feature-option.optionSwitch-container label,
+.spell-option.optionSwitch-container label,
+.characterEquipment-option.optionSwitch-container label,
+.characterSkills-option.optionSwitch-container label,
+.savingThrows-option.optionSwitch-container label,
+.characterSpells-option.optionSwitch-container label,
+.characterBackground-option.optionSwitch-container label,
+.characterFeatures-option.optionSwitch-container label,
+.characterProficiencies-option.optionSwitch-container label
+{
+  background-color: rgba(0, 0, 0, 0);
+  border: 0;
+  margin: 0;
+  padding: 5px 0;
+  display: inline-block;
+  width: 100%;
+}
+
+.characterEquipment.optionSwitch-container label,
+.characterSkills.optionSwitch-container label,
+.savingThrows.optionSwitch-container label,
+.characterSpells.optionSwitch-container label,
+.characterBackground.optionSwitch-container label,
+.characterFeatures.optionSwitch-container label,
+.characterProficiencies.optionSwitch-container label
+{
+  font-size: 0.8em;
+  font-weight: bold;
+}
+
+
+@media only screen and (min-width: 768px)
+{
+  /* FOR DESKTOP */
+  .characterEquipment.optionSwitch-container label,
+  .characterSkills.optionSwitch-container label,
+  .savingThrows.optionSwitch-container label,
+  .characterSpells.optionSwitch-container label,
+  .characterBackground.optionSwitch-container label,
+  .characterFeatures.optionSwitch-container label,
+  .characterProficiencies.optionSwitch-container label
+  {
+    font-size: 1.4em;
+  }
+}
+
+div.feature.optionSwitch-container:hover,
+div.spell.optionSwitch-container:hover {
+  background-color: rgba(0,0,0,0.1);
+}
+
+div.feature.optionSwitch-container.expanded:hover,
+div.spell.optionSwitch-container.expanded:hover {
+  background-color: rgba(0,0,0,0.2);
+}
+
+.feature.optionSwitch-container h5.featureEntry-source,
+.spell.optionSwitch-container h5.featureEntry-source {
+  text-align: left;
+}
+
+span.feature.optionSwitch-container.categoryCollapse-text,
+span.spell.optionSwitch-container.categoryCollapse-text{
+  display: inline-block;
+  margin: 0;
+  white-space: normal;
+}
+
+/* END EVENT CALLERS */
+
+/* NAV */
+
+.App-nav .optionButton-container {
+  display:inline-block;
+  margin: 8px;
+}
+
+.App-nav .optionButton-container label {
+  font-size: 18pt;
+}
+
+.navButton {
+  display: inline-block;
+}
+
+/* END NAV */
+
+/* CUSTOM OPTIONS */
+
+.options-table {
+  display: flex;
+  justify-content: center;
+  max-width: 100vw;
+  flex-wrap: wrap;
+  margin: 0 10px;
+}
+
+.levelRange-title
+{
+  margin: 5px;
+}
+
+.levelRange-container
+{
+  display: block;
+  width: 100%
+}
+
+.levelInput-container
+{
+  width: 100px;
+  margin: 0 auto;
+  display: flex;
+}
+
+.level-label
+{
+  padding-left: 5px;
+  width: 35px;
+}
+
+.level-span
+{
+  width: 35px;
+}
+
+/* END CUSTOM OPTIONS*/
+
+/* CHARACTER SHEET */
+
+h5.optionsNotice {
+  margin: 5px;
+}
+
+.clearButton.optionButton-container {
+  margin: 0 auto
+}
+
+.clearButton.optionButton-container label {
+  font-size: 10pt;
+}
+
+section.characterButtonSection {
+  display: grid;
+  align-items: center;
+  grid-template-columns: 1fr auto 1fr;
+}
+
+h5.characterCount {
+  margin: 0 auto;
+}
+
+img.fileButtons {
+  object-fit: contain;
+  width: 20px;
+  height: auto;
+}
+
+@media only screen and (min-width: 768px) {
+/* FOR DESKTOP */
+  img.fileButtons {
+    width: 30px;
+  }
+}
+
+h1.characterName {
+  font-size: 36pt;
+  margin: 0 auto;
+}
+
+h2.characterDescriptor {
+  font-size: 14pt;
+}
+
+.characterCombatProps {
+  margin-top: 0.83em;
+  display: flex;
+  flex-wrap: wrap;
+}
+
+.characterCombat {
+  display: inline-block;
+  margin: 0 15px;
+}
+
+.attributeEntry
+{
+  background-color: rgba(110, 110, 110, 0.3);
+  -webkit-box-sizing: border-box; /* Safari/Chrome, other WebKit */
+  -moz-box-sizing: border-box;    /* Firefox, other Gecko */
+  box-sizing: border-box;         /* Opera/IE 8+ */
+  margin: 10px 0;
+  padding: 5px;
+  max-width: 160px;
+}
+
+.attributeTitle {
+  margin: 0;
+  font-weight: 800;
+  margin-bottom: 5px;
+}
+
+.attributeValue {
+  background-color: rgba(110, 110, 110, 0.3);
+  max-width: 30%;
+  font-size: 20pt;
+  line-height: 20pt;
+  margin: 0 auto;
+  padding: 10px;
+}
+
+.attributeMod {
+  background-color: rgba(110, 110, 110, 0.2);
+  margin: 10px auto 0 auto;
+  padding-bottom: 5px;
+  max-width: 20%;
+}
+
+section.characterSaveSection,
+section.characterSkillSection,
+section.characterEquipmentSection
+{
+  width: 100%;
+}
+
+ul.characterSaves,
+ul.characterSkills,
+ul.characterProficiencies,
+ul.characterEquipment-list,
+ul.characterFeatures,
+ul.characterSpells
+{
+  padding: 0;
+  list-style-type: none;
+  margin: 0 auto;
+}
+
+ul.proficiencyEntries {
+  padding-left: 10px;
+  list-style-type: none;
+  margin: 10px auto;
+}
+
+.characterSaves li:nth-child(even),
+.characterSkills li:nth-child(odd),
+div.spellLevel
+{
+  background-color: rgba(110, 110, 110, 0.2);
+}
+
+.characterSaves li:nth-child(odd),
+.characterSkills li:nth-child(even)
+{
+  background-color: rgba(110, 110, 110, 0.4);
+}
+
+.characterSaves li,
+.characterSkills li,
+.characterEquipmentSection li,
+.characterFeatures li,
+.characterSaves li,
+.characterSpells li
+{
+  list-style-position: inside;
+  margin: 0;
+}
+
+.characterSaves li,
+.characterSkills li {
+  list-style-type: circle;
+}
+
+.characterEquipmentSection li,
+.characterFeatures li {
+  list-style-type: none;
+}
+
+.characterSaves li,
+.characterSkills li
+{
+  display: flex;
+}
+
+.characterSaves li.proficient,
+.characterSkills li.proficient {
+  list-style-type: disc;
+}
+
+.characterSaves li:before,
+.characterSkills li:before {
+  content: "";
+  border-radius: 50%;
+  border: rgb(53, 53, 53) 1px solid;
+  margin: auto 4px;
+  width: 6px;
+  height: 6px;
+  background: rgba(0,0,0,0);
+}
+
+.characterSaves li.proficient:before,
+.characterSkills li.proficient:before {
+  background: rgb(53, 53, 53);
+}
+
+.characterEquipmentSection li p {
+  margin: 0 auto;
+}
+
+.characterEquipmentSection li p
+{
+  text-indent: -20px;
+  padding-left: 20px;
+}
+
+p.savesTitle,
+p.skillsTitle {
+  margin: auto auto auto 2px;
+}
+
+p.savesValue,
+p.skillsValue {
+  margin: 0 5px 0 auto;
+}
+
+li.gearItem {
+  margin: 0 auto;
+}
+
+label.spellLevel-label
+{
+  display: flex;
+  justify-content: space-between;
+}
+
+.spellLevel-text:first-child
+{
+  margin-left: 1%;
+}
+
+.spellLevel-text:last-child
+{
+  margin-right: 1%;
+}
+
+ul.characterSpells
+{
+  margin: 0 3%;
+}
+
+span.spellLevel-text,
+span.featureEntry-text,
+span.spellEntry-text,
+span.spellLevel-slots {
+  margin: 0 auto;
+  font-weight:bold;
+}
+
+span.spellLevel-title,
+span.spellLevel-slots
+{
+  display: inline-block;
+  margin: 0;
+}
+
+h5.featureEntry-source,
+h5.spellEntry-attrib {
+  font-style: italic;
+  font-weight: normal;
+  margin: 0 0 3px 5px;
+  padding-top: 3px;
+  max-width: 90%;
+}
+
+p.featureEntry-desc,
+p.spellEntry-desc,
+p.spellEntry-attrib
+{
+  white-space: pre-line;
+  margin: 0 10px;
+}
+
+p.featureEntry-desc,
+p.spellEntry-desc {
+  padding-bottom: 10px;
+}
+
+/* END CHARACTER SHEET */
+
+@keyframes App-logo-spin {
+  from {
+    transform: rotate(0deg);
+  }
+  to {
+    transform: rotate(360deg);
+  }
+}

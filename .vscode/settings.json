@@ -1,0 +1,15 @@
+// Place your settings in this file to overwrite default and user settings.
+{
+    "search.exclude": {
+      "**/node_modules": true,
+      "**/.yarn": true,
+      "dist/": true,
+      "**/yarn.lock": true
+    },
+    "files.trimTrailingWhitespace": true,
+    "files.exclude": {
+      "node_modules/": true,
+      "packages/client/node_modules/": true,
+      ".yarn/": true
+    }
+}
