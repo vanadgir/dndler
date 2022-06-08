@@ -30,13 +30,6 @@ jobs:
           else
               echo "::set-output name=client_modified::false"
           fi
-          if [[ $file == packages/server/* ]]; then
-              echo "Files in the 'server' package have been modified."
-              echo "::set-output name=server_modified::true"
-              break
-          else
-              echo "::set-output name=server_modified::false"
-          fi
           done < files.txt
       - name: check server files
         id: check_server_files
