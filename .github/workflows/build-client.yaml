@@ -1,0 +1,28 @@
+on:
+  push:
+    branches:
+    - main
+    paths:
+    - '.github/workflows/build-client.yaml'
+    - 'packages/client/**'
+    - '!packages/client/**/*.test.js'
+
+jobs:
+  docker-build:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Check out repository code
+        uses: actions/checkout@v2
+
+      - name: Login to DockerHub
+        uses: docker/login-action@v1
+        with:
+          username: ${{ secrets.DOCKERHUB_USERNAME }}
+          password: ${{ secrets.DOCKERHUB_TOKEN }}
+
+      - name: Build and push
+        uses: docker/build-push-action@v2
+        with:
+          context: ./packages/client
+          push: true
+          tags: grahambleon/dndler-client:latest
