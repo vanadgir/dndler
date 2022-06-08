@@ -1,0 +1,93 @@
+name: Test New Changes
+on:
+  pull_request:
+    types: [opened, reopened, synchronize]
+
+jobs:
+  check-file-changes:
+    runs-on: ubuntu-latest
+    outputs:
+      client_modified: ${{ steps.check_client_files.outputs.client_modified }}
+      server_modified: ${{ steps.check_server_files.outputs.server_modified }}
+    steps:
+      - name: Check out repository code
+        uses: actions/checkout@v2
+        with:
+          fetch-depth: 2
+      - name: check client files
+        id: check_client_files
+        run: |
+          git diff --name-only HEAD^ HEAD
+          echo "========== check paths of modified files =========="
+          git diff --name-only HEAD^ HEAD > files.txt
+          while IFS= read -r file
+          do
+          echo $file
+          if [[ $file == packages/client/* ]]; then
+              echo "Files in the 'client' package have been modified."
+              echo "::set-output name=client_modified::true"
+              break
+          else
+              echo "::set-output name=client_modified::false"
+          fi
+          if [[ $file == packages/server/* ]]; then
+              echo "Files in the 'server' package have been modified."
+              echo "::set-output name=server_modified::true"
+              break
+          else
+              echo "::set-output name=server_modified::false"
+          fi
+          done < files.txt
+      - name: check server files
+        id: check_server_files
+        run: |
+          git diff --name-only HEAD^ HEAD
+          echo "========== check paths of modified files =========="
+          git diff --name-only HEAD^ HEAD > files.txt
+          while IFS= read -r file
+          do
+          echo $file
+          if [[ $file == packages/server/* ]]; then
+              echo "Files in the 'server' package have been modified."
+              echo "::set-output name=server_modified::true"
+              break
+          else
+              echo "::set-output name=server_modified::false"
+          fi
+          done < files.txt
+
+  server-test-suite:
+    runs-on: ubuntu-latest
+    needs: check-file-changes
+    steps:
+      - name: Check out repository code
+        uses: actions/checkout@v2
+        with:
+          fetch-depth: 2
+        if: needs.check-file-changes.outputs.server_modified == 'true'
+
+      - name: Install dependencies
+        if: needs.check-file-changes.outputs.server_modified == 'true'
+        run: yarn workspace server install --immutable --immutable-cache --check-cache
+
+      - name: Run test suite
+        if: needs.check-file-changes.outputs.server_modified == 'true'
+        run: yarn workspace server test --verbose
+
+  client-test-suite:
+    runs-on: ubuntu-latest
+    needs: check-file-changes
+    steps:
+      - name: Check out repository code
+        uses: actions/checkout@v2
+        with:
+          fetch-depth: 2
+        if: needs.check-file-changes.outputs.client_modified == 'true'
+
+      - name: Install dependencies
+        if: needs.check-file-changes.outputs.client_modified == 'true'
+        run: yarn workspace client install --immutable --immutable-cache --check-cache
+
+      - name: Run test suite
+        if: needs.check-file-changes.outputs.client_modified == 'true'
+        run: yarn workspace client test --verbose
