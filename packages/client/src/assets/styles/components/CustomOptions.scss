@@ -1,0 +1,34 @@
+.CustomOptions {
+  .OptionSwitch-container {
+    margin: 8px;
+  }
+
+  .levelRange-title
+  {
+    margin: 5px;
+  }
+
+  .levelRange-container
+  {
+    display: block;
+    width: 100%
+  }
+
+  .levelInput-container
+  {
+    width: 100px;
+    margin: 0 auto;
+    display: flex;
+  }
+
+  .level-label
+  {
+    padding-left: 5px;
+    width: 35px;
+  }
+
+  .level-span
+  {
+    width: 35px;
+  }
+}

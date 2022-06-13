@@ -87,7 +87,7 @@ const CustomOptionsPage = (props) => {
     return availableOptionsList.map((option, keyIndex) => (
       <OptionSwitch
         tableName={tableName}
-        className={"optionSwitch"}
+        className={"OptionSwitch"}
         key={keyIndex + option.Id}
         id={option.Id}
         value={option.Name}
@@ -106,7 +106,6 @@ const CustomOptionsPage = (props) => {
     let dummy = [];
     for (let source of activeOptions["Sources"]) {
       //walk through active sources
-      console.log(source);
       if (sources[source]) {
         for (let subItem in sources[source][categoryName]) {
           dummy.push(sources[source][categoryName][subItem]);
@@ -169,7 +168,7 @@ const CustomOptionsPage = (props) => {
   }, []);
 
   return (
-    <>
+    <div className="CustomOptions">
       <Collapsible
         id="sourceCollapsible"
         value="SOURCE MATERIALS"
@@ -225,7 +224,7 @@ const CustomOptionsPage = (props) => {
         id="spellCollapsible"
         value="SPELLS"
         collapsed={false}
-        category="spell"
+        category="spells"
         labelSpans={["SPELLS"]}
       >
         {makeTable(
@@ -244,7 +243,7 @@ const CustomOptionsPage = (props) => {
         <OptionSwitch
           handleToggle={(e) => flipSwitch(e, "Other")}
           value="Weighted Stats"
-          className="optionSwitch"
+          className="OptionSwitch"
           id="weighted"
           isOn={true}
         />
@@ -258,7 +257,7 @@ const CustomOptionsPage = (props) => {
         id={"customRoll"}
         className={"customRoll"}
       />
-    </>
+    </div>
   );
 };
 

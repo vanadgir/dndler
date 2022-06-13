@@ -30,7 +30,7 @@ const CharacterOtherProficiencies = () => {
       collapsed={false}
     >
       <section className="characterProficiencieSection">
-        <ul className="characterProficiencies">{proficiencyCategories}</ul>
+        <ul className="characterProficiencies no-dec">{proficiencyCategories}</ul>
       </section>
     </Collapsible>
   );

@@ -38,10 +38,11 @@ const CharacterSpells = () => {
             collapsed={true}
             category="spellLevel"
           >
-            <ul className={spellLevel + "-spells characterSpells"}>
+            <ul className={spellLevel + "-spells characterSpells no-dec"}>
               {spellsForLevel(spells[spellLevel])}
             </ul>
           </Collapsible>
+          <hr/>
         </React.Fragment>
       );
     });

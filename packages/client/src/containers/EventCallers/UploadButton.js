@@ -11,7 +11,7 @@ const UploadButton = (props) => {
     : null;
 
   return (
-    <div className={props.containerName + " uploadButton-container"}>
+    <div className={props.containerName + " UploadButton-container"}>
       <input
         type="file"
         accept="application/json"
@@ -21,10 +21,10 @@ const UploadButton = (props) => {
       ></input>
       <label
         htmlFor={props.id}
-        className={props.className + "-label uploadButton-label"}
+        className={props.className + "-label UploadButton-label"}
       >
         {labelImg}
-        <span className="uploadButton-span">{props.label}</span>
+        <span className="UploadButton-span">{props.label}</span>
       </label>
     </div>
   );

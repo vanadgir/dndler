@@ -9,6 +9,7 @@ const CharacterSavingThrows = () => {
   const savingThrows = proficiencies["Saving Throws"];
   const proficientThrows = proficiencies["Proficient Throws"];
 
+  console.log(proficientThrows);
   const saveMap = attributes.map((attrib) => {
     const shortKey = attrib.substring(0, 3);
     return (
@@ -16,7 +17,7 @@ const CharacterSavingThrows = () => {
         key={shortKey}
         title={shortKey}
         value={savingThrows[shortKey]}
-        prof={proficientThrows.includes[shortKey]}
+        prof={proficientThrows.includes(shortKey)}
       />
     );
   });

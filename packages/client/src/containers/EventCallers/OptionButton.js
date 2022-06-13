@@ -10,7 +10,7 @@ const OptionButton = (props) => {
     : null;
 
   return (
-    <div className={props.containerName + " optionButton-container"}>
+    <div className={props.containerName + " OptionButton-container"}>
       <button
         value={props.value}
         onClick={handleChange}
@@ -19,10 +19,10 @@ const OptionButton = (props) => {
       ></button>
       <label
         htmlFor={props.id}
-        className={props.className + "-label optionButton-label"}
+        className={props.className + "-label OptionButton-label"}
       >
         {labelImg}
-        <span className="optionButton-span">{props.label}</span>
+        <span className="OptionButton-span">{props.label}</span>
       </label>
     </div>
   );

@@ -1,0 +1,240 @@
+@import "./CharacterSheet/Header.scss";
+
+.threeColumn {
+  display: flex;
+  justify-content: space-between;
+
+  .thirdColumn {
+    margin: 0 auto;
+    max-width: 30%;
+  }
+
+  section {
+    width: 100%;
+
+    &.characterStatSection {
+      .attributeEntry {
+        background-color: $fade-grey-3;
+        -webkit-box-sizing: border-box; /* Safari/Chrome, other WebKit */
+        -moz-box-sizing: border-box; /* Firefox, other Gecko */
+        box-sizing: border-box; /* Opera/IE 8+ */
+        margin: 10px 0;
+        padding: 5px;
+        max-width: 160px;
+
+        .attributeTitle {
+          margin: 0;
+          font-weight: 800;
+          margin-bottom: 5px;
+        }
+
+        .attributeValue {
+          background-color: $fade-grey-3;
+          max-width: 30%;
+          font-size: 20pt;
+          line-height: 20pt;
+          margin: 0 auto;
+          padding: 10px;
+        }
+
+        .attributeMod {
+          background-color: $fade-grey-2;
+          margin: 10px auto 0 auto;
+          padding-bottom: 5px;
+          max-width: 20%;
+        }
+      }
+    }
+
+    &.characterCombatProps {
+      margin-top: 0.83em;
+      display: flex;
+      flex-wrap: wrap;
+
+      .characterCombat {
+        display: inline-block;
+        margin: 0 15px;
+      }
+    }
+
+    &.characterSpellSection {
+      margin: 0 3%;
+
+      label.spellLevel-label {
+        display: flex;
+        justify-content: space-between;
+
+        .spellLevel-text {
+          margin: 0;
+          &:first-child {
+            margin-left: 1%;
+          }
+          &:last-child {
+            margin-right: 1%;
+          }
+        }
+      }
+    }
+
+    ul {
+      padding: 0;
+      list-style-type: none;
+      margin: 0 auto;
+
+      li {
+        list-style-position: inside;
+        margin: 0;
+      }
+
+      &.characterSaves li,
+      &.characterSkills li {
+        list-style-type: circle;
+        display: flex;
+
+        &:nth-child(odd) {
+          background-color: $fade-grey-2;
+        }
+
+        &:nth-child(even) {
+          background-color: $fade-grey-3;
+        }
+
+        &:before {
+          content: "";
+          border-radius: 50%;
+          border: $dark-grey 1px solid;
+          margin: auto 4px;
+          width: 6px;
+          height: 6px;
+          background: $transparent;
+        }
+
+        &.proficient {
+          list-style-type: disc;
+
+          &:before {
+            background: $dark-grey;
+          }
+        }
+      }
+
+      &.proficiencyEntries {
+        padding-left: 10px;
+        margin: 10px auto;
+      }
+
+      li.characterEquipEntry p {
+        margin: 0 auto;
+        text-indent: -20px;
+        padding-left: 20px;
+      }
+
+      div.feature-option.OptionSwitch-container,
+      div.spell-option.OptionSwitch-container {
+        text-align: center;
+        border: 0;
+        font-weight: bold;
+        margin: 0;
+        white-space: normal;
+
+        &:hover {
+          background-color: $fade-grey-2;
+        }
+      }
+    }
+
+    p {
+      &.savesTitle,
+      &.skillsTitle {
+        margin: auto auto auto 2px;
+      }
+      &.savesValue,
+      &.skillsValue {
+        margin: 0 5px 0 auto;
+      }
+      &.featureEntry-desc,
+      &.spellEntry-desc {
+        white-space: pre-line;
+      }
+      &.featureEntry-desc,
+      &.spellEntry-desc {
+        padding-bottom: 10px;
+      }
+    }
+
+    span {
+      &.spellLevel-text,
+      &.featureEntry-text,
+      &.spellEntry-text,
+      &.spellLevel-slots {
+        font-weight: bold;
+        display: inline-block;
+      }
+    }
+  }
+  .OptionSwitch-container {
+    label {
+      background-color: $transparent;
+      border: 0;
+      margin: 0;
+      padding: 5px 0;
+      display: inline-block;
+      width: 100%;
+    }
+    &.characterEquipment,
+    &.characterSkills,
+    &.savingThrows,
+    &.characterSpells,
+    &.characterBackground,
+    &.characterFeatures,
+    &.characterProficiencies {
+      label {
+        font-size: 0.8em;
+        font-weight: bold;
+
+        @include for-tablet-landscape-up {
+          font-size: 1.4em;
+        }
+      }
+    }
+  }
+}
+
+.feature.OptionSwitch-container,
+.spell.OptionSwitch-container {
+  input[type="checkbox"] {
+    & + label:hover {
+      background-color: $transparent;
+    }
+    &:checked + label {
+      background-color: $transparent;
+      color: #000;
+    }
+  }
+  label {
+    white-space: normal;
+    &:hover {
+      background-color: $transparent;
+    }
+  }
+  & + input[type="checkbox"]:checked {
+    background-color: $fade-grey-2;
+  }
+}
+
+.Collapsible-children {
+  margin-top: 4px;
+}
+
+.Collapsible-children.feature-table,
+.Collapsible-children.spell-table {
+  display: block;
+  &.collapse-content.expanded {
+    background-color: $fade-grey-2;
+    padding: 4px;
+  }
+  h5 {
+    margin: 0;
+    text-align: left;
+  }
+}

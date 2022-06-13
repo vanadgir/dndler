@@ -25,7 +25,7 @@ const CharacterFeatures = () => {
       collapsed={false}
     >
       <section className="characterFeatureSection">
-        <ul className="characterFeatures">{featureList}</ul>
+        <ul className="characterFeatures no-dec">{featureList}</ul>
       </section>
     </Collapsible>
   );

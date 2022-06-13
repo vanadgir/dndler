@@ -1,0 +1,58 @@
+.OptionSwitch-container,
+.OptionButton-container,
+.UploadButton-container {
+  label {
+    padding: 4px;
+    transition: background-color 0.1s 0s;
+    background-color: $offwhite;
+    border: solid 1px $eggshell;
+    white-space: nowrap;
+  }
+}
+
+.OptionButton-container,
+.UploadButton-container {
+  margin: 8px 5px;
+  label {
+    font-size: 16pt;
+    @include for-desktop-up {
+      font-size: 24pt;
+    }
+  }
+}
+
+.OptionSwitch-container input[type=checkbox],
+.OptionButton-container button,
+.UploadButton-container input[type=file] {
+  &.hidden {
+    opacity: 0;
+    position: absolute;
+    z-index: -3;
+  }
+
+  &+ label:hover {
+    background-color: $light-grey
+  }
+
+  &:checked + label, &:active + label {
+    background-color: $grey;
+    color: #fff;
+
+    &:hover {
+      background-color: $dark-grey;
+    }
+  }
+}
+
+.Collapsible-children {
+  display: flex;
+  justify-content: center;
+  max-width: 100vw;
+  flex-wrap: wrap;
+  margin: 0 10px;
+}
+
+.category.collapsed {
+  height: 0;
+  overflow: hidden;
+}
