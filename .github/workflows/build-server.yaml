@@ -1,0 +1,31 @@
+on:
+  push:
+    branches:
+    - main
+    paths:
+    - '.github/workflows/build-server.yaml'
+    - 'packages/server/**'
+    - '!packages/server/**/*.test.js'
+    - '!packages/server/data/*.py'
+    - '!packages/server/data/*.csv'
+    - '!packages/server/data/*.json'
+
+jobs:
+  docker-build:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Check out repository code
+        uses: actions/checkout@v2
+
+      - name: Login to DockerHub
+        uses: docker/login-action@v1
+        with:
+          username: ${{ secrets.DOCKERHUB_USERNAME }}
+          password: ${{ secrets.DOCKERHUB_TOKEN }}
+
+      - name: Build and push
+        uses: docker/build-push-action@v2
+        with:
+          context: ./packages/server
+          push: true
+          tags: grahambleon/dndler-server:latest
