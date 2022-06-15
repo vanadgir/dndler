@@ -22,8 +22,6 @@ const port = process.env.SERVER_PORT || 5000;
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: true }));
 
-console.log(clientStaticPath());
-
 app.use(express.static(clientStaticPath()));
 app.use('/', rootRouter);
 
