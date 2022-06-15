@@ -16,7 +16,7 @@ const fetchCharacter = async (options, history, historyCallback, indexCallback) 
       indexCallback(history.length);
     } else throw new Error(`ERROR! Status code: ${response.status}`);
   } catch (error) {
-    console.log(`Sorry, it borked cuz ${error}`);
+    console.log(`Sorry, it broke because... ${error}`);
   }
 };
 

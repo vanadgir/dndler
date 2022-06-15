@@ -4,7 +4,7 @@ import OtherProficiencyCategory from "../entries/OtherProficiencyCategory";
 import Collapsible from "../../EventCallers/Collapsible";
 
 const CharacterOtherProficiencies = () => {
-  const characterProficiencies = useContext(characterContext).proficiency;
+  const characterProficiencies = useContext(characterContext).proficiency.Other;
 
   const proficiencyCategories = Object.keys(characterProficiencies)
     .filter((proficiencyIndex) => {
