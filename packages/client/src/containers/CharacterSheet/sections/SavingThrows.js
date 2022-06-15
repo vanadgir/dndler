@@ -2,7 +2,7 @@ import React, { useContext } from "react";
 import characterContext from "../../../contexts/characterContext";
 import SaveThrow from "../entries/SaveEntry";
 import Collapsible from "../../EventCallers/Collapsible";
-import attributes from "../../../constants/attributes.js";
+import attributes from "../../../constants/attributeList.js";
 
 const CharacterSavingThrows = () => {
   const proficiencies = useContext(characterContext).proficiency;
