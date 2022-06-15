@@ -1,5 +1,5 @@
-import React, { useState } from "react";
-import { Routes, Route, useNavigate } from "react-router-dom";
+import React from "react";
+import { Routes, Route } from "react-router-dom";
 import CharacterHistoryLayout from "./layouts/CharacterHistoryLayout";
 import CustomOptionsPage from "./CustomOptions";
 import CharacterSheet from "./CharacterSheet";
