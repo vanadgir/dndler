@@ -1,0 +1,33 @@
+.InfoLinks {
+  list-style: none;
+  display: flex;
+  justify-content: center;
+  padding: 0;
+  margin: 0;
+
+  li {
+    padding: 0 4px;
+    a {
+      color: $dark-grey;
+
+      &:hover {
+        color: lighten($dark-grey, 30%);
+      }
+
+      &.active {
+        color: red;
+
+        &:hover {
+          color: lighten(red, 15%);
+        }
+      }
+
+      p {
+        text-decoration: underline;
+        display: inline-block;
+        margin: 0 0 10px;
+        font-size: medium;
+      }
+    }
+  }
+}
