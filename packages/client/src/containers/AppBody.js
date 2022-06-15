@@ -13,6 +13,7 @@ const AppBody = () => {
           <Route path="/custom" element={<CustomOptionsPage />} />
           <Route path="/character" element={<CharacterSheet />} />
           <Route path="/legal" element={<></>} />
+          <Route path="/" element={<CharacterSheet />} />
         </Route>
       </Routes>
     </div>
