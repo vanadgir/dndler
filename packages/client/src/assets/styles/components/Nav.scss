@@ -1,12 +1,42 @@
-.App-nav .OptionButton-container {
-  display:inline-block;
-  margin: 8px;
+.App-nav {
+  background-color: $dark-grey;
 }
 
-.App-nav .OptionButton-container label {
-  font-size: 18pt;
-}
-
-.navButton {
+.NavLink {
+  text-decoration: none;
   display: inline-block;
+  margin: 4px;
+
+  .navText-container {
+    padding: 4px;
+    transition: background-color 0.1s 0s;
+    border: solid 1px $eggshell;
+    white-space: nowrap;
+
+    span {
+      color: $offwhite;
+    }
+  }
+
+  &.hidden {
+    display: none;
+  }
+
+  &:hover {
+    .navText-container {
+      background-color: lighten($dark-grey, 30%);
+    }
+  }
+
+  &:active {
+    .navText-container {
+      background-color: $grey;
+
+      span {
+        color: $offwhite;
+      }
+    }
+  }
+
 }
+

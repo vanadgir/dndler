@@ -1,18 +1,12 @@
 import React, { useState, useEffect } from "react";
+import { useOutletContext } from "react-router-dom";
 import Collapsible from "../EventCallers/Collapsible";
 import OptionButton from "../EventCallers/OptionButton";
 import OptionSwitch from "../EventCallers/OptionSwitch";
 
-const CustomOptionsPage = (props) => {
+const CustomOptionsPage = () => {
+  const { charOptions: activeOptions, setCharOptions: setActiveOptions, navigateToCharSheet } = useOutletContext();
   const [sources, setSources] = useState({});
-  const [activeOptions, setActiveOptions] = useState({
-    Sources: ["SRD"],
-    Classes: [],
-    Races: [],
-    Backgrounds: [],
-    Levels: [1, 20],
-    Other: [],
-  });
 
   const activeSources = (activeOptionSources) =>
     Object.entries(sources)
@@ -105,7 +99,6 @@ const CustomOptionsPage = (props) => {
   const optionCategory = (categoryName) => {
     let dummy = [];
     for (let source of activeOptions["Sources"]) {
-      //walk through active sources
       if (sources[source]) {
         for (let subItem in sources[source][categoryName]) {
           dummy.push(sources[source][categoryName][subItem]);
@@ -146,10 +139,6 @@ const CustomOptionsPage = (props) => {
       </div>
     </div>
   );
-
-  const sendOptions = () => {
-    props.sendOptions(activeOptions);
-  };
 
   const fetchSources = async () => {
     try {
@@ -251,8 +240,8 @@ const CustomOptionsPage = (props) => {
       </Collapsible>
       <hr />
       <OptionButton
-        label={"LET'S SEE DA MIN"}
-        onClick={sendOptions}
+        label={"LET'S SEE 'EM"}
+        onClick={navigateToCharSheet}
         value={""}
         id={"customRoll"}
         className={"customRoll"}

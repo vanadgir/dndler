@@ -7,12 +7,11 @@ const CharacterSpells = () => {
   const spells = useContext(characterContext).spells;
 
   const spellsForLevel = (spellLevel) => {
-    let rows = [];
-    for (let spell of spellLevel) {
-      rows.push(<SpellEntry key={spell + "-entry"} spell={spell} />);
-    }
-    return rows;
-  };
+    return spellLevel.map((spell, index) => {
+      const isLast = index+1 === spellLevel.length;
+      return <SpellEntry key={spell + "-entry"} spell={spell} noDivider={isLast} />
+    })
+  }
 
   const spellList = Object.keys(spells)
     .filter((spellKey) => {
@@ -21,13 +20,14 @@ const CharacterSpells = () => {
     .filter((spellKey) => {
       return spells[spellKey].length;
     })
-    .map((spellLevel) => {
+    .map((spellLevel, index) => {
       const levelString =
         spellLevel === "Cantrip" ? spellLevel + "s" : spellLevel + " Level";
       const levelSlots =
         spellLevel !== "Cantrip"
           ? spells["spellSlots"][parseInt(spellLevel) - 1] + " slots"
           : "";
+      const divider = index+2 === Object.keys(spells).length ? null : <hr/>;
       return (
         <React.Fragment key={spellLevel + "-list"}>
           <Collapsible
@@ -42,7 +42,7 @@ const CharacterSpells = () => {
               {spellsForLevel(spells[spellLevel])}
             </ul>
           </Collapsible>
-          <hr/>
+          {divider}
         </React.Fragment>
       );
     });
