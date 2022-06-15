@@ -3,7 +3,7 @@ import clientIndexPath from "../config/clientIndexPath.js";
 
 const clientRouter = express.Router();
 
-const clientRoutes = ["/", "/custom"];
+const clientRoutes = ["/", "/character", "/custom", "/legal", "/about"];
 
 clientRouter.get(clientRoutes, (req, res) => {
   res.sendFile(clientIndexPath());
