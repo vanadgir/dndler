@@ -8,8 +8,6 @@ const CharacterSavingThrows = () => {
   const proficiencies = useContext(characterContext).proficiency;
   const savingThrows = proficiencies["Saving Throws"];
   const proficientThrows = proficiencies["Proficient Throws"];
-
-  console.log(proficientThrows);
   const saveMap = attributes.map((attrib) => {
     const shortKey = attrib.substring(0, 3);
     return (

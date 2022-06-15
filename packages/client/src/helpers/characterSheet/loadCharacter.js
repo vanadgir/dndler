@@ -1,7 +1,6 @@
 import validateCharacterUpload from "./validateCharacterUpload.js";
 
 const checkDuplicateCharacter = (character, history) => {
-  console.log(history);
   let returnObj = {
     index: 0,
     duplicate: false,

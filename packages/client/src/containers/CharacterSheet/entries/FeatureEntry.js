@@ -4,9 +4,9 @@ const FeatureEntry = (props) => {
   return (
     <li className="characterFeatureEntry leftAlign">
       <Collapsible
-        id={props.feature["Name"]}
+        id={props.feature["Name"] + props.index}
         value={props.feature["Name"]}
-        neverBar={false}
+        neverBar={props.noDivider}
         category="feature"
         collapsed={true}
         labelSpans={[props.feature["Name"]]}

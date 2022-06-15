@@ -120,7 +120,7 @@
 
       &.proficiencyEntries {
         padding-left: 10px;
-        margin: 10px auto;
+        margin: 4px auto 10px;
       }
 
       li.characterEquipEntry p {
@@ -228,6 +228,7 @@
 
 .Collapsible-children.feature-table,
 .Collapsible-children.spell-table {
+  margin-top: 0;
   display: block;
   &.collapse-content.expanded {
     background-color: $fade-grey-2;

@@ -1,8 +1,7 @@
-import React, { useState, useEffect } from "react";
+import React, { useEffect } from "react";
+import { useOutletContext } from "react-router-dom";
 
-import fetchCharacter from "../../helpers/characterSheet/fetchCharacter.js";
 import saveCharacter from "../../helpers/characterSheet/saveCharacter.js";
-import loadCharacter from "../../helpers/characterSheet/loadCharacter.js";
 
 import CharacterHeader from "./sections/Header.js";
 import CharacterLeftColumn from "./columns/LeftColumn.js";
@@ -14,43 +13,32 @@ import UploadButton from "../EventCallers/UploadButton";
 import SaveIcon from "../../img/save.png";
 import LoadIcon from "../../img/load.png";
 
+import defaultCharOptions from "../../constants/defaultCharOptions.js";
 import { CharacterProvider } from "../../contexts/characterContext.js";
 
-const CharacterSheet = (props) => {
-  const [history, setHistory] = useState([]);
-  const [characterIndex, setCharacterIndex] = useState(0);
+const CharacterSheet = () => {
+  const {
+    charOptions,
+    clearOptions,
+    characterIndex,
+    history,
+    goBackChar,
+    goForwardChar,
+    beginFetch,
+    loadCharacterClosure,
+  } = useOutletContext();
 
   useEffect(() => {
-    beginFetch();
+    if (!history.length) beginFetch();
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 
-  const beginFetch = () => {
-    fetchCharacter(props.options, history, setHistory, setCharacterIndex);
-  };
-
-  const goBackChar = () => {
-    if (characterIndex > 0) {
-      setCharacterIndex(characterIndex - 1);
-    }
-  };
-
-  const goForwardChar = () => {
-    if (characterIndex < history.length - 1) {
-      setCharacterIndex(characterIndex + 1);
-    }
-  };
-
-  const loadCharacterClosure = (file) => {
-    loadCharacter(file, history, setHistory, setCharacterIndex);
-  };
-
-  const customOptionsNotice = props.charOptions ? (
+  const customOptionsNotice = charOptions != defaultCharOptions ? (
     <>
       <h5 className="optionsNotice">(Your custom options remain in effect)</h5>
       <OptionButton
         label={"clear custom options"}
-        onClick={props.clearOptions}
+        onClick={clearOptions}
         id={"clearOptions"}
         className={"clearOptions"}
         containerName={"clearButton"}
@@ -90,7 +78,7 @@ const CharacterSheet = (props) => {
     <section className="historyButtonSection">
       {determineBackButton}
       <OptionButton
-        label={"GIMME ANUDDER MIN!"}
+        label={"GIVE ME ANOTHER!"}
         onClick={beginFetch}
         value={""}
         id={"reroll"}
@@ -122,7 +110,12 @@ const CharacterSheet = (props) => {
     </section>
   );
 
-  const hasSpells = history[characterIndex] && history[characterIndex].spells && Object.keys(history[characterIndex].spells).length ? true : false;
+  const hasSpells =
+    history[characterIndex] &&
+    history[characterIndex].spells &&
+    Object.keys(history[characterIndex].spells).length
+      ? true
+      : false;
 
   const characterSheetBody = history[characterIndex] ? (
     <CharacterProvider value={history[characterIndex]}>
@@ -136,7 +129,7 @@ const CharacterSheet = (props) => {
         <CharacterHeader />
         <section className="threeColumn">
           <CharacterLeftColumn />
-          <CharacterMiddleColumn hasSpells={hasSpells}/>
+          <CharacterMiddleColumn hasSpells={hasSpells} />
           <CharacterRightColumn />
         </section>
       </section>

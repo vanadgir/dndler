@@ -8,7 +8,7 @@ const SpellEntry = (props) => {
         id={props.spell[0]}
         value={props.spell[0]}
         labelSpans={[props.spell[0]]}
-        neverBar={false}
+        neverBar={props.noDivider}
         category="spell"
         collapsed={true}
       >
