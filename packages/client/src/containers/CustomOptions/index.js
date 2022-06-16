@@ -197,7 +197,7 @@ const CustomOptionsPage = () => {
           "Races"
         )}
       </Collapsible>
-      <Collapsible
+      {/* <Collapsible
         id="backgroundCollapsible"
         value="BACKGROUNDS"
         collapsed={false}
@@ -220,7 +220,7 @@ const CustomOptionsPage = () => {
           optionCategory("Spells").map((x) => ({ Id: x, Name: x })),
           "Spells"
         )}
-      </Collapsible>
+      </Collapsible> */}
       <Collapsible
         id="optionsCollapsible"
         value="OTHER"

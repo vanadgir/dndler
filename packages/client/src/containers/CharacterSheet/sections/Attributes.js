@@ -1,6 +1,6 @@
 import React, { useContext } from "react";
 import AttributeEntry from "../entries/AttributeEntry";
-import attributes from '../../../constants/Attributes'
+import attributes from '../../../constants/attributes.js'
 import characterContext from "../../../contexts/characterContext";
 
 const CharacterAttributes = () => {
