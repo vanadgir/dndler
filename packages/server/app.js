@@ -4,6 +4,7 @@ import { fileURLToPath } from 'url';
 import express from 'express';
 import bodyParser from 'body-parser';
 import { config as dotenv } from 'dotenv';
+import morgan from 'morgan';
 // routes
 import rootRouter from './routes/rootRouter.js';
 import clientStaticPath from './config/clientStaticPath.js';
@@ -18,6 +19,8 @@ const __filename = fileURLToPath(import.meta.url);
 
 const app = express();
 const port = process.env.PORT || 8000;
+
+app.use(morgan(':method :url :status :response-time ms'))
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: true }));
 
