@@ -2,11 +2,13 @@ version: "3.8"
 
 services:
   client:
-    image: client
+    build:
+      context: ./packages/client
     ports:
       - "80:80"
 
   api:
-    image: server
+    build:
+      context: ./packages/server
     ports:
       - "8000:8000"
