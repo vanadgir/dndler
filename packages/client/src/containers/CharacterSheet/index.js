@@ -33,6 +33,7 @@ const CharacterSheet = () => {
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 
+  // eslint-disable-next-line eqeqeq
   const customOptionsNotice = charOptions != defaultCharOptions ? (
     <>
       <h5 className="optionsNotice">(Your custom options remain in effect)</h5>
