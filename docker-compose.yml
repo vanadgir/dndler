@@ -1,0 +1,14 @@
+version: "3.8"
+
+services:
+  client:
+    build:
+      context: ./packages/client
+    ports:
+      - "80:80"
+
+  api:
+    build:
+      context: ./packages/server
+    ports:
+      - "8000:8000"
