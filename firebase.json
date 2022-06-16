@@ -1,6 +1,17 @@
 {
   "hosting": {
     "public": "packages/client/build",
+    "rewrites": [{
+      "source": "/api/**",
+      "run": {
+        "serviceId": "api",
+        "region": "us-central1"
+      }
+     },
+     {
+      "source": "**",
+      "destination": "/index.html"
+     }],
     "ignore": [
       "firebase.json",
       "**/.*",
