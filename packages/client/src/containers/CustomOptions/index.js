@@ -8,6 +8,10 @@ const CustomOptionsPage = () => {
   const { charOptions: activeOptions, setCharOptions: setActiveOptions, navigateToCharSheet } = useOutletContext();
   const [sources, setSources] = useState({});
 
+  useEffect(() => {
+    fetchSources();
+  }, []);
+
   const activeSources = (activeOptionSources) =>
     Object.entries(sources)
       .filter(([key, value]) => activeOptionSources.includes(key))
@@ -152,10 +156,6 @@ const CustomOptionsPage = () => {
     }
   };
 
-  useEffect(() => {
-    fetchSources();
-  }, []);
-
   return (
     <div className="CustomOptions">
       <Collapsible
@@ -214,7 +214,11 @@ const CustomOptionsPage = () => {
           className="OptionSwitch"
           id="weighted"
           isOn={true}
-        />
+        >
+          <label htmlFor="weighted" className={"weighted-label"}>
+            <span className={"weighted customOption"}>Weighted Stats?</span>
+          </label>
+        </OptionSwitch>
         {levelRange}
       </Collapsible>
       <OptionButton

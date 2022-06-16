@@ -4,7 +4,7 @@ const defaultCharOptions = {
   Races: [],
   Backgrounds: [],
   Levels: [1, 20],
-  Other: [],
+  Other: ["weighted"],
 }
 
 export default defaultCharOptions;
