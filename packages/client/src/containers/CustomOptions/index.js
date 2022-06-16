@@ -214,7 +214,11 @@ const CustomOptionsPage = () => {
           className="OptionSwitch"
           id="weighted"
           isOn={true}
-        />
+        >
+          <label htmlFor="weighted" className={"weighted-label"}>
+            <span className={"weighted customOption"}>Weighted Stats?</span>
+          </label>
+        </OptionSwitch>
         {levelRange}
       </Collapsible>
       <OptionButton
