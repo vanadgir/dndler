@@ -8,16 +8,17 @@
   li {
     padding: 0 4px;
     a {
-      color: $dark-grey;
 
-      &:hover {
-        color: lighten($dark-grey, 30%);
+      &:hover p {
+        color: white;
       }
 
       &.active {
-        color: red;
+        p {
+          color: red;
+        }
 
-        &:hover {
+        &:hover p {
           color: lighten(red, 15%);
         }
       }
@@ -27,6 +28,7 @@
         display: inline-block;
         margin: 0 0 10px;
         font-size: medium;
+        color: $eggshell;
       }
     }
   }

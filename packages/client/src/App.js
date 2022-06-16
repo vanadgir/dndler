@@ -15,7 +15,6 @@ const App = () => {
       <BrowserRouter>
         <Navigation />
         <AppBody/>
-        <hr />
         <Footer/>
       </BrowserRouter>
     </div>
