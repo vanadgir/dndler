@@ -1,5 +1,5 @@
 import React from "react";
-import { Routes, Route } from "react-router-dom";
+import { Routes, Route, Navigate } from "react-router-dom";
 import CharacterHistoryLayout from "./layouts/CharacterHistoryLayout";
 import CustomOptionsPage from "./CustomOptions";
 import CharacterSheet from "./CharacterSheet";
@@ -15,7 +15,7 @@ const AppBody = () => {
           <Route path="/custom" element={<CustomOptionsPage />} />
           <Route path="/character" element={<CharacterSheet />} />
           <Route path="/legal" element={<Legal/>} />
-          <Route path="/" element={<CharacterSheet />} />
+          <Route path="*" element={<Navigate to="/character" replace />} />
         </Route>
       </Routes>
     </div>
