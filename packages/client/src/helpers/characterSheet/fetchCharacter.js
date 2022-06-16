@@ -1,6 +1,6 @@
 const fetchCharacter = async (options, history, historyCallback, indexCallback) => {
   try {
-    const response = await fetch(`/characters`, {
+    const response = await fetch(`/api/v1/characters`, {
       method: "POST",
       body: options
         ? JSON.stringify(options)

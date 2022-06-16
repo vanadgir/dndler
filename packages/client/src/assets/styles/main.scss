@@ -3,6 +3,7 @@
 
 html,body {
   overflow-x: hidden;
+  background-color: $dark-grey;
 }
 
 body {
@@ -93,4 +94,8 @@ hr
 @import "./components/eventCallers.scss";
 @import "./components/Nav.scss";
 @import "./components/CustomOptions.scss";
-@import "./components//CharacterSheet.scss";
+@import "./components/CharacterSheet.scss";
+@import "./components/Footer.scss";
+@import "./components/InfoLinks.scss";
+@import "./components/Legal.scss";
+@import "./components/About.scss";

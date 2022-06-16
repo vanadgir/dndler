@@ -1,0 +1,35 @@
+.InfoLinks {
+  list-style: none;
+  display: flex;
+  justify-content: center;
+  padding: 0;
+  margin: 0;
+
+  li {
+    padding: 0 4px;
+    a {
+
+      &:hover p {
+        color: white;
+      }
+
+      &.active {
+        p {
+          color: red;
+        }
+
+        &:hover p {
+          color: lighten(red, 15%);
+        }
+      }
+
+      p {
+        text-decoration: underline;
+        display: inline-block;
+        margin: 0 0 10px;
+        font-size: medium;
+        color: $eggshell;
+      }
+    }
+  }
+}

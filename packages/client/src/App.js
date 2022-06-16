@@ -3,7 +3,7 @@ import { BrowserRouter } from "react-router-dom";
 import logo from "./logo.svg";
 import AppBody from "./containers/AppBody";
 import Navigation from "./containers/Navigation";
-import Clock from "./containers/Clock";
+import Footer from "./containers/Footer";
 
 const App = () => {
   return (
@@ -15,9 +15,8 @@ const App = () => {
       <BrowserRouter>
         <Navigation />
         <AppBody/>
+        <Footer/>
       </BrowserRouter>
-      <hr />
-      <Clock />
     </div>
   );
 };

@@ -1,5 +1,7 @@
 import express from "express";
 import { sourcebooks, names, backgrounds, races } from "../../../data/data.js";
+import characterRouter from "./character/characterRouter.js";
+import charIndexRouter from "./characters/charIndexRouter.js";
 
 const apiRouter = express.Router();
 
@@ -18,5 +20,8 @@ apiRouter.get("/backgrounds", (req, res) => {
 apiRouter.get("/races", (req, res) => {
   res.status(200).send(JSON.stringify(races)).end();
 });
+
+apiRouter.use("/character", characterRouter);
+apiRouter.use("/characters", charIndexRouter);
 
 export default apiRouter;

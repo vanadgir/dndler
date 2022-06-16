@@ -23,8 +23,9 @@
   "author": "Varun Nadgir, Tyler Brandt, Graham Gilpatric",
   "license": "MIT",
   "scripts": {
-    "start": "yarn workspaces foreach -pi run dev",
-    "build": "yarn workspaces foreach -pti run build"
+    "dev": "NODE_ENV=development yarn workspaces foreach -pi run dev",
+    "build": "yarn workspaces foreach -pti run build",
+    "start": "NODE_ENV=production yarn workspace server run start"
   },
   "packageManager": "yarn@3.1.1",
   "workspaces": {

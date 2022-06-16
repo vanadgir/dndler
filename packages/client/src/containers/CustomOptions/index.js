@@ -164,6 +164,7 @@ const CustomOptionsPage = () => {
         collapsed={false}
         category="source"
         labelSpans={["SOURCE MATERIALS"]}
+        neverBar={true}
       >
         {makeTable(
           Object.entries(sources).map(([key, value]) => ({
@@ -179,6 +180,7 @@ const CustomOptionsPage = () => {
         collapsed={false}
         category="class"
         labelSpans={["CLASSES"]}
+        neverBar={true}
       >
         {makeTable(
           optionCategory("Classes").map((x) => ({ Id: x, Name: x })),
@@ -191,34 +193,11 @@ const CustomOptionsPage = () => {
         collapsed={false}
         category="race"
         labelSpans={["RACES"]}
+        neverBar={true}
       >
         {makeTable(
           optionCategory("Races").map((x) => ({ Id: x, Name: x })),
           "Races"
-        )}
-      </Collapsible>
-      <Collapsible
-        id="backgroundCollapsible"
-        value="BACKGROUNDS"
-        collapsed={false}
-        category="background"
-        labelSpans={["BACKGROUNDS"]}
-      >
-        {makeTable(
-          optionCategory("Backgrounds").map((x) => ({ Id: x, Name: x })),
-          "Backgrounds"
-        )}
-      </Collapsible>
-      <Collapsible
-        id="spellCollapsible"
-        value="SPELLS"
-        collapsed={false}
-        category="spells"
-        labelSpans={["SPELLS"]}
-      >
-        {makeTable(
-          optionCategory("Spells").map((x) => ({ Id: x, Name: x })),
-          "Spells"
         )}
       </Collapsible>
       <Collapsible
@@ -238,7 +217,6 @@ const CustomOptionsPage = () => {
         />
         {levelRange}
       </Collapsible>
-      <hr />
       <OptionButton
         label={"LET'S SEE 'EM"}
         onClick={navigateToCharSheet}

@@ -1,5 +1,5 @@
 import express from "express";
-import { generateAll } from "../../generators/generateAll.js";
+import { generateAll } from "../../../../generators/generateAll.js";
 
 const charIndexRouter = express.Router();
 

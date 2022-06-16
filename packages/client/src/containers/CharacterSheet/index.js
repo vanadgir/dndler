@@ -138,7 +138,7 @@ const CharacterSheet = () => {
     <h2>Loading character...</h2>
   );
 
-  return <>{characterSheetBody}</>;
+  return <div className="CharacterSheet">{characterSheetBody}</div>;
 };
 
 export default CharacterSheet;
