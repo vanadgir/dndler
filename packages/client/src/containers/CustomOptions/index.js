@@ -8,6 +8,10 @@ const CustomOptionsPage = () => {
   const { charOptions: activeOptions, setCharOptions: setActiveOptions, navigateToCharSheet } = useOutletContext();
   const [sources, setSources] = useState({});
 
+  useEffect(() => {
+    fetchSources();
+  }, []);
+
   const activeSources = (activeOptionSources) =>
     Object.entries(sources)
       .filter(([key, value]) => activeOptionSources.includes(key))
@@ -151,10 +155,6 @@ const CustomOptionsPage = () => {
       console.error(`Sorry, it borked cuz ${error}`);
     }
   };
-
-  useEffect(() => {
-    fetchSources();
-  }, []);
 
   return (
     <div className="CustomOptions">
