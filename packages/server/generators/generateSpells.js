@@ -125,13 +125,6 @@ const spellsKnown = (modifiers, classChoice, charLevel) => {
   let levelProgress = 1;
   let highestAvailable = 1;
   switch (classChoice) {
-    case "Artificer":
-      knownPrepared = modifierSpellProgression(
-        modifiers["INT"],
-        classChoice,
-        charLevel
-      );
-      break;
     case "Bard":
       knownPrepared = determinedProgression(
         [
@@ -258,7 +251,6 @@ const serializeSpellInfo = (spellLevel, spell) => {
 // generate spell page
 const generateSpells = (modifiers, classChoice, charLevel, raceChoice) => {
   let spellcasters = [
-    "Artificer",
     "Bard",
     "Cleric",
     "Druid",

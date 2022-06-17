@@ -38,7 +38,7 @@ const featureLookup = (feature, source, charLevel) => {
             case 'levelReq':
                 for (let requirement of Object.keys(featureBody[key])) {
                     if (charLevel >= Number(requirement)) {
-                        featureDescription = featureDescription.concat(featureBody[key][requirement]).concat(" ");
+                        featureDescription = featureDescription.concat(featureBody[key][requirement]).concat("");
                     } else if (requirement === "description") {
                         featureDescription = featureDescription.concat(" ").concat(featureBody[key][requirement]);
                     };
@@ -85,6 +85,7 @@ const generateFeatures = (classChoice, bgChoice, raceChoice, charLevel) => {
         for (let feature of currentLevel) {
             let repeat = classFeatures.filter(x => x === feature).length > 1;
             if (!repeat) {
+                // console.log(feature);
                 classFeatureInd[feature] = ind;
                 fullFeatures[ind] = {
                     "Name": feature,
