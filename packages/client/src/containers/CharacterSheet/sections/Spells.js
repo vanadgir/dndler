@@ -25,7 +25,7 @@ const CharacterSpells = () => {
         spellLevel === "Cantrip" ? spellLevel + "s" : spellLevel + " Level";
       const levelSlots =
         spellLevel !== "Cantrip"
-          ? spells["spellSlots"][parseInt(spellLevel) - 1] + " slots"
+          ? spells["spellSlots"][parseInt(spellLevel)] + " slots"
           : "";
       const divider = index+2 === Object.keys(spells).length ? null : <hr/>;
       return (
