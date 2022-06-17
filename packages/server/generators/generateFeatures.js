@@ -15,34 +15,47 @@ const featureLookup = (feature, source, charLevel) => {
             featureBody = backgroundTraits[feature];
             break;
         case 'Class':
-            // featureBody = classTraits[feature];
-            featureBody = {"description": "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua."}
+            featureBody = classTraits[feature];
+            // featureBody = { "description": "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua." }
             break;
         default:
             break;
     };
     for (let key of Object.keys(featureBody)) {
-        if (key === "description") {
-            featureDescription = featureBody[key];
-        } else if (key === "pickOne") {
-            featureDescription = sample(featureBody[key]);
-        } else if (key === "levelReq") {
-            for (let requirement of Object.keys(featureBody[key])) {
-                if (charLevel >= Number(requirement)) {
-                    featureDescription = featureDescription.concat(featureBody[key][requirement]).concat(" ");
-                } else if (requirement === "description") {
-                    featureDescription = featureDescription.concat(" ").concat(featureBody[key][requirement]);
+        switch (key) {
+            case 'description':
+                (featureDescription === ""
+                ? featureDescription = featureBody[key]
+                : featureDescription = featureDescription + featureBody[key]);
+                // featureDescription = featureDescription + featureBody[key];
+                break;
+            case 'pickOne':
+                (featureDescription === ""
+                ? featureDescription = sample(featureBody[key])
+                : featureDescription = featureDescription + sample(featureBody[key]));
+                // featureDescription = featureDescription + sample(featureBody[key]);
+                break;
+            case 'levelReq':
+                for (let requirement of Object.keys(featureBody[key])) {
+                    if (charLevel >= Number(requirement)) {
+                        featureDescription = featureDescription.concat(featureBody[key][requirement]).concat(" ");
+                    } else if (requirement === "description") {
+                        featureDescription = featureDescription.concat(" ").concat(featureBody[key][requirement]);
+                    };
                 };
-            };
+                break;
+            default:
+                break;
         };
     };
     return featureDescription;
 };
 
-// combine features from background and class, still need to add race
+// combine features from background and class
 const generateFeatures = (classChoice, bgChoice, raceChoice, charLevel) => {
     let ind = 0;
     let fullFeatures = {};
+    // gather race features and loop
     let raceFeatures = races[raceChoice]["Features"];
     for (let feature of raceFeatures) {
         fullFeatures[ind] = {
@@ -52,6 +65,7 @@ const generateFeatures = (classChoice, bgChoice, raceChoice, charLevel) => {
         };
         ind += 1;
     };
+    // gather background features and fill
     let bgFeatures = bgChoice["Features"];
     for (let feature of bgFeatures) {
         fullFeatures[ind] = {
@@ -60,19 +74,30 @@ const generateFeatures = (classChoice, bgChoice, raceChoice, charLevel) => {
             "Source": bgChoice["Name"]
         };
         ind += 1;
-    }
-    let iter = 1;
+    };
+    // gather class features
     let classFeatures = [];
+    let iter = 1;
+    let classFeatureInd = {};
     while (iter <= charLevel) {
         let currentLevel = classes[classChoice]["Features"][iter];
         classFeatures = classFeatures.concat(currentLevel);
         for (let feature of currentLevel) {
-            fullFeatures[ind] = {
-                "Name": feature,
-                "Description": featureLookup(feature, 'Class', iter),
-                "Source": classChoice + " " + String(iter)
+            let repeat = classFeatures.filter(x => x === feature).length > 1;
+            if (!repeat) {
+                classFeatureInd[feature] = ind;
+                fullFeatures[ind] = {
+                    "Name": feature,
+                    "Description": featureLookup(feature, 'Class', iter),
+                    "Source": classChoice + " " + iter
+                };
+                ind += 1;
+            } else {
+                let previousInd = classFeatureInd[feature];
+                let oldSource = fullFeatures[previousInd]["Source"];
+                fullFeatures[previousInd]["Description"] = featureLookup(feature, 'Class', iter);
+                fullFeatures[previousInd]["Source"] = oldSource + ", " + iter;
             };
-            ind += 1;
         };
         iter += 1;
     };

@@ -1564,6 +1564,7 @@ const names = {
         "Gorstag",
         "Grassus",
         "Grax",
+        "Greg",
         "Grenenzel",
         "Grigor",
         "Grim",
