@@ -5,9 +5,16 @@ import express from 'express';
 import bodyParser from 'body-parser';
 import { config as dotenv } from 'dotenv';
 import morgan from 'morgan';
+import Knex from "knex";
 // routes
 import rootRouter from './routes/rootRouter.js';
 import clientStaticPath from './config/clientStaticPath.js';
+
+import { Model } from "objection";
+import knexfile from "./knexfile.cjs";
+
+const knex = Knex(knexfile);
+Model.knex(knex);
 
 let dotenvPath = "./.env";
 if(process.env.NODE_ENV === "development") {

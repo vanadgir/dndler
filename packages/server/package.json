@@ -21,8 +21,11 @@
     "express-validator": "^6.14.0",
     "find-yarn-workspace-root": "^2.0.0",
     "joi": "^17.5.0",
+    "knex": "^2.1.0",
     "lodash": "^4.17.21",
-    "morgan": "^1.10.0"
+    "morgan": "^1.10.0",
+    "objection": "^3.0.1",
+    "pg": "^8.7.3"
   },
   "devDependencies": {
     "@babel/core": "^7.16.12",
