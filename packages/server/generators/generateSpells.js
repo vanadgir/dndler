@@ -125,13 +125,6 @@ const spellsKnown = (modifiers, classChoice, charLevel) => {
   let levelProgress = 1;
   let highestAvailable = 1;
   switch (classChoice) {
-    case "Artificer":
-      knownPrepared = modifierSpellProgression(
-        modifiers["INT"],
-        classChoice,
-        charLevel
-      );
-      break;
     case "Bard":
       knownPrepared = determinedProgression(
         [
@@ -242,30 +235,22 @@ const filterSpells = (classChoice) => {
 };
 
 // put together spell description
-const spellDescription = (spellLevel, spell) => {
-  let school = spells[spellLevel][spell]["School"];
-  let castingTime = spells[spellLevel][spell]["Casting Time"];
-  let range = spells[spellLevel][spell]["Range"];
-  let duration = spells[spellLevel][spell]["Duration"];
-  let components = spells[spellLevel][spell]["Components"];
-  let description =
-    school +
-    " | " +
-    castingTime +
-    " | " +
-    range +
-    " | " +
-    duration +
-    " | (" +
-    components +
-    ")";
-  return description;
+const serializeSpellInfo = (spellLevel, spell) => {
+  const thisSpell = spells[spellLevel][spell];
+  const serializedSpell = {
+    school: thisSpell["School"],
+    castingTime: thisSpell["Casting Time"],
+    range: thisSpell["Range"],
+    duration: thisSpell["Duration"],
+    components: thisSpell["Components"],
+    description: thisSpell["Description"],
+  };
+  return serializedSpell;
 };
 
 // generate spell page
 const generateSpells = (modifiers, classChoice, charLevel, raceChoice) => {
   let spellcasters = [
-    "Artificer",
     "Bard",
     "Cleric",
     "Druid",
@@ -300,9 +285,9 @@ const generateSpells = (modifiers, classChoice, charLevel, raceChoice) => {
   }
   for (let level of Object.keys(spellsObj)) {
     for (let spell of spellsObj[level]) {
-      let description = spellDescription(level, spell);
+      let info = serializeSpellInfo(level, spell);
       let index = spellsObj[level].indexOf(spell);
-      spellsObj[level][index] = [spell, description];
+      spellsObj[level][index] = [spell, info];
     }
   }
   spellcasters.includes(classChoice)

@@ -12,15 +12,10 @@ const SpellEntry = (props) => {
         category="spell"
         collapsed={true}
       >
-        <h5 className="spellEntry-attrib">{props.spell[1]}</h5>
-        <p className="spellEntry-desc">
-          Lorem ipsum dolor sit amet, consectetur adipiscing elit. Aliquam
-          gravida, nisi non porttitor vestibulum, nisl elit venenatis odio, quis
-          sodales eros justo vitae ligula.
-          <br />
-          <br /> Sed sit amet accumsan mi. Quisque varius placerat nulla, ut
-          tempus tellus consequat a.
-        </p>
+        <h5 className="spellEntry-attrib">{props.spell[1].school} - {props.spell[1].castingTime}</h5>
+        <h5 className="spellEntry-attrib">{props.spell[1].range} - {props.spell[1].duration}</h5>
+        <h5 className="spellEntry-attrib">{props.spell[1].components}</h5>
+        <p className="spellEntry-desc">{props.spell[1].description}</p>
       </Collapsible>
     </li>
   );
