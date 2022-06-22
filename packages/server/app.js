@@ -1,20 +1,12 @@
 // dependencies
-import path from 'path';
-import { fileURLToPath } from 'url';
 import express from 'express';
 import bodyParser from 'body-parser';
 import { config as dotenv } from 'dotenv';
 import morgan from 'morgan';
-import Knex from "knex";
 // routes
 import rootRouter from './routes/rootRouter.js';
 import clientStaticPath from './config/clientStaticPath.js';
-
-import { Model } from "objection";
-import knexfile from "./knexfile.cjs";
-
-const knex = Knex(knexfile);
-Model.knex(knex);
+import knexBoot from "./config/knexBoot.js";
 
 let dotenvPath = "./.env";
 if(process.env.NODE_ENV === "development") {
@@ -22,7 +14,6 @@ if(process.env.NODE_ENV === "development") {
 }
 
 dotenv({ path: dotenvPath });
-const __filename = fileURLToPath(import.meta.url);
 
 const app = express();
 const port = process.env.PORT || 8000;

@@ -4,13 +4,13 @@ import Character from "./Character.js";
 import Equipment from "./Equipment.js";
 import Feature from "./Feature.js";
 import Proficiency from "./Proficiency.js";
-import BackgroundEquipment from "./BackgroundEquipment.js";
-import BackgroundFeature from "./BackgroundFeature.js";
-import BackgroundProficiency from "./BackgroundProficiency.js";
+import ClassEquipment from "./ClassEquipment.js";
+import ClassFeature from "./ClassFeature.js";
+import ClassProficiency from "./ClassProficiency.js";
 
-class Background extends Model {
+class Class extends Model {
   static get tableName() {
-    return "backgrounds";
+    return "classes";
   }
 
   static get relationMappings() {
@@ -19,18 +19,18 @@ class Background extends Model {
         relation: Model.HasManyRelation,
         modelClass: Character,
         join: {
-          from: "backgrounds.id",
-          to: "characters.backgroundId"
+          from: "classes.id",
+          to: "characters.classId"
         }
       },
       equipments: {
         relation: Model.ManyToManyRelation,
         modelClass: Equipment,
         join: {
-          from: "backgrounds.id",
+          from: "classes.id",
           through: {
-            from: "backgroundEquipments.backgroundId",
-            to: "backgroundEquipments.equipmentId",
+            from: "classEquipments.classId",
+            to: "classEquipments.equipmentId",
           },
           to: "equipments.id",
         }
@@ -39,10 +39,10 @@ class Background extends Model {
         relation: Model.ManyToManyRelation,
         modelClass: Feature,
         join: {
-          from: "backgrounds.id",
+          from: "classes.id",
           through: {
-            from: "backgroundFeatures.backgroundId",
-            to: "backgroundFeatures.featureId",
+            from: "classFeatures.classId",
+            to: "classFeatures.featureId",
           },
           to: "features.id",
         }
@@ -51,40 +51,40 @@ class Background extends Model {
         relation: Model.ManyToManyRelation,
         modelClass: Proficiency,
         join: {
-          from: "backgrounds.id",
+          from: "classes.id",
           through: {
-            from: "backgroundProficiencies.backgroundId",
-            to: "backgroundProficiencies.proficiencyId",
+            from: "classProficiencies.classId",
+            to: "classProficiencies.proficiencyId",
           },
           to: "proficiencies.id",
         }
       },
-      backgroundEquipments: {
+      classEquipments: {
         relation: Model.HasManyRelation,
-        modelClass: BackgroundEquipment,
+        modelClass: ClassEquipment,
         join: {
-          from: "backgrounds.id",
-          to: "backgroundEquipments.backgroundId",
+          from: "classes.id",
+          to: "classEquipments.classId",
         },
       },
-      backgroundFeatures: {
+      classFeatures: {
         relation: Model.HasManyRelation,
-        modelClass: BackgroundFeature,
+        modelClass: ClassFeature,
         join: {
-          from: "backgrounds.id",
-          to: "backgroundFeatures.backgroundId",
+          from: "classes.id",
+          to: "classFeatures.classId",
         },
       },
-      backgroundProficiencies: {
+      classProficiencies: {
         relation: Model.HasManyRelation,
-        modelClass: BackgroundProficiency,
+        modelClass: ClassProficiency,
         join: {
-          from: "backgrounds.id",
-          to: "backgroundProficiencies.backgroundId",
+          from: "classes.id",
+          to: "classProficiencies.classId",
         },
       },
     }
   }
 }
 
-export default Background;
+export default Class;

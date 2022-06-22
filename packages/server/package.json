@@ -10,7 +10,11 @@
     "clidev": "nodemon ./cli.js",
     "data": "node ./dataValidator.js",
     "test": "jest",
-    "watch": "jest --watch"
+    "watch": "jest --watch",
+    "db:migrate-make": "knex --knexfile ./knexfile.cjs migrate:make",
+    "db:migrate-latest": "knex --knexfile ./knexfile.cjs migrate:latest",
+    "db:migrate-rollback": "knex --knexfile ./knexfil.cjs migrate:rollback",
+    "db:seed": "node ./db/seeders/seed.js"
   },
   "author": "Varun Nadgir, Tyler Brandt, Graham Gilpatric",
   "dependencies": {

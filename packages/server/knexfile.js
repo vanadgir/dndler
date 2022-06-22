@@ -1,7 +1,9 @@
-module.exports = {
+import getDatabaseURL from "./config/getDatabaseURL.js";
+
+export default {
   client: "pg",
   useNullAsDefault: true,
-  connection: "postgres://postgres:postgres@localhost:5432/dndler",
+  connection: getDatabaseURL(process.env.NODE_ENV || "development"),
   migrations: {
     directory: "db/migrations",
     extension: "cjs",
