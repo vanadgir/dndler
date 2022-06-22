@@ -726,11 +726,7 @@ const classTraits = {
         "description": ""
     },
     "ASI": {
-        "pickOne": [
-            "+2 one Ability Score",
-            "+1 two Ability Scores",
-            "Feat Choice"
-        ]
+        "description": ""
     }
 }
 
