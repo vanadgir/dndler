@@ -596,9 +596,13 @@ const classTraits = {
     },
     "Metamagic": {
         "description": [
-            "At 3rd level, you gain the ability to twist your spells to suit your needs. You gain two of the following Metamagic options of your choice. You gain another one at 10th level and 17th level.",
+            "At 3rd level, you gain the ability to twist your spells to suit your needs. You gain two of the following Metamagic options of your choice.",
             "\n \n You can use only one Metamagic option on a spell when you cast it, unless otherwise noted."
-        ]
+        ],
+        "levelReq": {
+            10: "\n \n You gain another one at 10th level",
+            17: " and 17th level."
+        }
     },
     "Sorcerous Restoration": {
         "description": "At 20th level, you regain 4 expended sorcery points whenever you finish a short rest."
