@@ -5,4 +5,4 @@ import { Model } from "objection";
 const knex = Knex(knexfile);
 Model.knex(knex);
 
-export { knex };
+export default knex;

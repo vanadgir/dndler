@@ -5,7 +5,7 @@ import Feature from "./Feature.js";
 
 class BackgroundFeature extends Model {
   static get tableName() {
-    return "backgroundfeatures";
+    return "backgroundFeatures";
   }
 
   static get relationMappings() {

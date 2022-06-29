@@ -1,28 +1,28 @@
 import { Model } from "objection";
 
-import Race from "./Race.js";
+import Spell from "./Spell.js";
 import Feature from "./Feature.js";
 
-class RaceFeature extends Model {
+class FeatureSpell extends Model {
   static get tableName() {
-    return "raceFeatures";
+    return "featureSpells";
   }
 
   static get relationMappings() {
     return {
-      race: {
+      class: {
         relation: Model.BelongsToOneRelation,
-        modelClass: Race,
+        modelClass: Spell,
         join: {
-          from: "raceFeatures.raceId",
-          to: "races.id",
+          from: "featureSpells.spellId",
+          to: "spells.id",
         },
       },
       feature: {
         relation: Model.BelongsToOneRelation,
         modelClass: Feature,
         join: {
-          from: "raceFeatures.featureId",
+          from: "featureSpells.featureId",
           to: "features.id",
         },
       },
@@ -30,4 +30,4 @@ class RaceFeature extends Model {
   }
 }
 
-export default RaceFeature;
+export default FeatureSpell;

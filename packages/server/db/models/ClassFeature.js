@@ -5,7 +5,7 @@ import Feature from "./Feature.js";
 
 class ClassFeature extends Model {
   static get tableName() {
-    return "classfeatures";
+    return "classFeatures";
   }
 
   static get relationMappings() {

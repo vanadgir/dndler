@@ -10,8 +10,8 @@
   return knex.schema.createTable("features", (t) => {
     t.bigIncrements("id");
     t.string("title").notNullable().unique();
-    t.text("description").notNullable();
-    t.text("atHigherLevels").notNullable();
+    t.specificType("description", "text ARRAY").notNullable();
+    t.specificType("atHigherLevels", "text ARRAY");
     t.timestamp("createdAt").notNullable().defaultTo(knex.fn.now());
     t.timestamp("updatedAt").notNullable().defaultTo(knex.fn.now());
   });
