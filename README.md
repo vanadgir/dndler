@@ -19,4 +19,4 @@ As of June 1, 2022, the dndler is in the process of being rebuilt. A current ite
 ![roadmap](dndler_roadmap.png)
 
 ### Goal
-Many TTRPGs involve frequent mixing of pre-written game materials and pure improvization. The dndler hopes to simplify the improvizational aspect where applicable, such as players wanting to create random characters for one-shots or DMs trying to create multiple NPCs at once (with names and personalities included, not just a skeleton).
+Many TTRPGs involve frequent mixing of pre-written game materials and pure improvization. The dndler hopes to simplify the improvizational aspect where applicable, such as players wanting to create random characters for one-shots or GMs trying to create multiple NPCs at once (with names and personalities included, not just a skeleton).
