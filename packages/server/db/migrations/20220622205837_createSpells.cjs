@@ -9,6 +9,7 @@
   console.log("Creating spells table");
   return knex.schema.createTable("spells", (t) => {
     t.bigIncrements("id");
+    t.string("level").notNullable().references("spellLevels.id");
     t.string("title").notNullable().unique();
     t.string("school").notNullable();
     t.string("castingTime").notNullable();

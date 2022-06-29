@@ -1,12 +1,17 @@
 import Feature from "../models/Feature.js";
-import features from "./SRD/features.js";
+import { features } from "./SRD/data.js";
 
 class FeatureSeeder {
   static async seed() {
-    for(const singleFeatureData of features) {
-      const currentFeature = await Feature.query().findOne(singleFeatureData);
-      if(!currentFeature) {
-        await Feature.query().insert(singleFeatureData);
+    for (const singleFeature in features) {
+      const currentFeature = await Feature.query().findOne({
+        title: singleFeature,
+      });
+      if (!currentFeature) {
+        await Feature.query().insert({
+          ...features[singleFeature],
+          title: singleFeature,
+        });
       }
     }
   }

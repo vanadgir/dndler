@@ -1,5 +1,5 @@
 import Attribute from "../models/Attribute.js";
-import { abilityScores as attributes} from "./SRD/data.js";
+import { attributes } from "./SRD/data.js";
 
 class AttributeSeeder {
   static async seed() {
