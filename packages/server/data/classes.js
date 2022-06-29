@@ -121,8 +121,8 @@ const classes = {
             16: ["ASI"],
             17: ["Destroy Undead", "Divine Domain Feature"],
             18: ["Channel Divinity"],
-            19: ["Ability Score Improvement"],
-            20: ["Divine Intervention Improvement"]
+            19: ["ASI"],
+            20: ["Divine Intervention"]
         }
     },
     "Druid": {
@@ -233,7 +233,7 @@ const classes = {
             6: ["Ki-Empowered Strikes", "Monastic Tradition Feature"],
             7: ["Evasion", "Stillness of Mind"],
             8: ["ASI"],
-            9: ["Unarmored Movement Improvement"],
+            9: ["Unarmored Movement"],
             10: ["Purity of Body"],
             11: ["Monastic Tradition Feature"],
             12: ["ASI"],
@@ -284,7 +284,7 @@ const classes = {
             15: ["Sacred Oath Feature"],
             16: ["ASI"],
             17: [],
-            18: ["Aura Improvements"],
+            18: ["Aura of Protection", "Aura of Courage"],
             19: ["ASI"],
             20: ["Sacred Oath Feature"]
         }
