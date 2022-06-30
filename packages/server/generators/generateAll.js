@@ -5,7 +5,7 @@ import generateStats from "./generateStats.js";
 import generateBackground from "./generateBackground.js";
 import generateProficiency from "./generateProficiency.js";
 import generateFeatures from "./generateFeatures.js";
-import { races } from "../data/data.js";
+import { races } from "../db/seeders/SRD/data.js";
 import { generateEquipment } from "./generateEquipment.js";
 import {
   generateLevel,

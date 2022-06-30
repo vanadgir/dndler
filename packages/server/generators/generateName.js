@@ -1,7 +1,7 @@
 // import lodash library
 import pkg from "lodash";
 const { sample } = pkg;
-import { miscRollTable, names } from "../data/data.js";
+import { miscRollTable, names } from "../db/seeders/SRD/data.js";
 
 //generates name
 const generateName = () => {

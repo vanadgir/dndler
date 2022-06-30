@@ -1,7 +1,7 @@
 // import lodash library
 import pkg from "lodash";
 const { sample, sampleSize, flatten } = pkg;
-import { classes, races } from "../data/data.js";
+import { classes, races } from "../db/seeders/SRD/data.js";
 import { equipmentReplace } from "./generateEquipment.js";
 
 // calculate proficiency bonus based on character level

@@ -7,7 +7,7 @@ import {
   spellSlots,
   races,
   racialTraits,
-} from "../data/data.js";
+} from "../db/seeders/SRD/data.js";
 
 // zip together ability score names and stats
 const zipSlots = (slotsArray) => {

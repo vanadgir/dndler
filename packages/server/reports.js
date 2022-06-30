@@ -12,7 +12,7 @@ import {
   classTraits,
   equipment,
   miscRollTable,
-} from "./data/data.js";
+} from "./db/seeders/SRD/data.js";
 
 // remove duplicates from given array
 const removeDups = (array) => {

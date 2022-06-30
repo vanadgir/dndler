@@ -1,7 +1,7 @@
 // import lodash library
 import pkg from "lodash";
 const { sum, zipWith, add, shuffle } = pkg;
-import { abilityScores, races } from "../data/data.js";
+import { attributes, races } from "../db/seeders/SRD/data.js";
 
 // function to calculate mod based on total score
 const calcModFromScore = (abilityScore) => {
@@ -24,7 +24,7 @@ const roll4DropLowest = () => {
 // zip together ability score names and stats
 const zipStats = (statArray) => {
   let zippedArray = statArray.reduce((result, stat, index) => {
-    result[abilityScores[index]] = stat;
+    result[attributes[index]] = stat;
     return result;
   }, {});
   return zippedArray;

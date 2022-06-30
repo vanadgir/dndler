@@ -1,4 +1,4 @@
-import { classes } from "../data/data.js";
+import { classes } from "../db/seeders/SRD/data.js";
 
 // generate character level
 const generateLevel = (min = 1, max = 20) => {

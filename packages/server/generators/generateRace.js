@@ -1,7 +1,7 @@
 // import lodash library
 import pkg from "lodash";
 const { sample } = pkg;
-import { races } from "../data/data.js";
+import { races } from "../db/seeders/SRD/data.js";
 
 // generates race
 const generateRace = (raceArray) => {

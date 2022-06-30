@@ -1,7 +1,7 @@
 // import lodash library
 import pkg from "lodash";
 const { sample, flatten, flattenDeep } = pkg;
-import { classes, equipment, miscRollTable } from "../data/data.js";
+import { classes, equipment, miscRollTable } from "../db/seeders/SRD/data.js";
 
 // replace equipment keywords with actual choices
 const equipmentReplace = (item) => {

@@ -1,7 +1,7 @@
 // import lodash library
 import pkg from "lodash";
 const { sample } = pkg;
-import { classes } from "../data/data.js";
+import { classes } from "../db/seeders/SRD/data.js";
 
 // generates class
 const generateClass = (classArray) => {

@@ -9,7 +9,7 @@ import {
   racialTraits,
   classes,
   classFeatures,
-} from "../data/data.js";
+} from "../db/seeders/SRD/data.js";
 
 test("races accounted for", () => {
   let sourcebookRaces = [];

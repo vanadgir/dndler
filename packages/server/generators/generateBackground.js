@@ -1,7 +1,7 @@
 // import lodash library
 import pkg from "lodash";
 const { sample } = pkg;
-import { backgrounds, names } from "../data/data.js";
+import { backgrounds, names } from "../db/seeders/SRD/data.js";
 
 // generates background
 const generateBackground = (backgroundArray) => {
