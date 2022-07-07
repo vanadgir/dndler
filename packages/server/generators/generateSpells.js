@@ -225,7 +225,7 @@ const filterSpells = (classChoice) => {
   let iter = 0;
   for (let level of Object.keys(spells)) {
     for (let spell of Object.keys(spells[level])) {
-      spells[level][spell]["Classes"].includes(classChoice)
+      spells[level][spell].classes.includes(classChoice)
         ? (validSpells[iter] = validSpells[iter].concat(spell))
         : "";
     }
@@ -238,12 +238,12 @@ const filterSpells = (classChoice) => {
 const serializeSpellInfo = (spellLevel, spell) => {
   const thisSpell = spells[spellLevel][spell];
   const serializedSpell = {
-    school: thisSpell["School"],
-    castingTime: thisSpell["Casting Time"],
-    range: thisSpell["Range"],
-    duration: thisSpell["Duration"],
-    components: thisSpell["Components"],
-    description: thisSpell["Description"],
+    school: thisSpell.school,
+    castingTime: thisSpell.castingTime,
+    range: thisSpell.range,
+    duration: thisSpell.duration,
+    components: thisSpell.components,
+    description: thisSpell.description,
   };
   return serializedSpell;
 };

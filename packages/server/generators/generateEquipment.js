@@ -9,27 +9,27 @@ const equipmentReplace = (item) => {
     let options = '';
     switch (item) {
         case 'Simple':
-            options = Object.keys(equipment["Weapons"]["Simple Melee"]).concat(Object.keys(equipment["Weapons"]["Simple Ranged"]));
+            options = Object.keys(equipment["Weapon"]["Simple Melee"]).concat(Object.keys(equipment["Weapon"]["Simple Ranged"]));
             choice = sample(options);
             break;
         case 'Simple Melee':
-            options = Object.keys(equipment["Weapons"]["Simple Melee"]);
+            options = Object.keys(equipment["Weapon"]["Simple Melee"]);
             choice = sample(options);
             break;
         case 'Simple Ranged':
-            options = Object.keys(equipment["Weapons"]["Simple Ranged"]);
+            options = Object.keys(equipment["Weapon"]["Simple Ranged"]);
             choice = sample(options);
             break;
         case 'Martial':
-            options = Object.keys(equipment["Weapons"]['Martial Melee']).concat(Object.keys(equipment["Weapons"]['Martial Ranged']));
+            options = Object.keys(equipment["Weapon"]['Martial Melee']).concat(Object.keys(equipment["Weapon"]['Martial Ranged']));
             choice = sample(options);
             break;
         case 'Martial Melee':
-            options = Object.keys(equipment["Weapons"]["Martial Melee"]);
+            options = Object.keys(equipment["Weapon"]["Martial Melee"]);
             choice = sample(options);
             break;
         case 'Martial Ranged':
-            options = Object.keys(equipment["Weapons"]["Martial Ranged"]);
+            options = Object.keys(equipment["Weapon"]["Martial Ranged"]);
             choice = sample(options);
             break;
         case 'Artisan Choice':
