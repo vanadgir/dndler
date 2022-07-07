@@ -12,7 +12,7 @@ exports.up = async (knex) => {
     t.string("attributeId")
       .notNullable()
       .references("attributes.id");
-    t.string("name").notNullable().unique();
+    t.string("title").notNullable().unique();
     t.timestamp("createdAt").notNullable().defaultTo(knex.fn.now());
     t.timestamp("updatedAt").notNullable().defaultTo(knex.fn.now());
   });

@@ -3,6 +3,7 @@ import AttributeSeeder from "./AttributeSeeder.js";
 import FeatureSeeder from "./FeatureSeeder.js";
 // import BackgroundSeeder from "./BackgroundSeeder.js";
 import SpellLevelSeeder from "./SpellLevelSeeder.js";
+import SkillSeeder from "./SkillSeeder.js";
 import SpellSeeder from "./SpellSeeder.js";
 import EquipmentSeeder from "./EquipmentSeeder.js";
 
@@ -16,6 +17,8 @@ class Seeder {
     await SpellLevelSeeder.seed();
     console.log("seeding spells...");
     await SpellSeeder.seed();
+    console.log("seeding skills...");
+    await SkillSeeder.seed();
     console.log("seeding equipment...");
     await EquipmentSeeder.seed();
     // console.log("seeding backgrounds...");
