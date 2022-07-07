@@ -4,6 +4,7 @@ import attributes from "./attributes.js";
 import names from './names.js';
 import backgrounds from './backgrounds.js';
 import features from './features.js';
+import skills from "./skills.js";
 import races from './races.js';
 import racialTraits from './racialTraits.js';
 import classTraits from './classTraits.js';
@@ -37,6 +38,7 @@ export {
     names,
     backgrounds,
     features,
+    skills,
     races,
     racialTraits,
     classTraits,
