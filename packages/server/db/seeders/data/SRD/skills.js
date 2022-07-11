@@ -56,6 +56,10 @@ const skills = [
     attributeId: "CHA"
   },
   {
+    title: "Religion",
+    attributeId: "WIS"
+  },
+  {
     title: "Saving Throw - STR",
     attributeId: "STR"
   },

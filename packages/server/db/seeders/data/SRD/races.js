@@ -37,7 +37,7 @@ const races = {
             "Languages": [
                 "Common",
                 "Elvish",
-                "Language Choice"
+                "CHOICE"
             ],
             "Skills": {
                 "Choices": ["Perception"],
@@ -74,7 +74,7 @@ const races = {
         "Proficiencies": {
             "Languages": [
                 "Common",
-                "Language Choice"
+                "CHOICE"
             ]
         },
         "Features": []
@@ -120,7 +120,7 @@ const races = {
             "Languages": [
                 "Common",
                 "Elvish",
-                "Language Choice"
+                "CHOICE"
             ],
             "Skills": {
                 "Choices": ["Acrobatics", "Animal", "Arcana", "Athletics", "Deception", "History", "Insight", "Intimidation", "Investigation", "Medicine", "Nature", "Perception", "Performance", "Religion", "Sleight", "Stealth", "Survival"],
