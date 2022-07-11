@@ -11,6 +11,9 @@
     t.bigIncrements("id");
     t.string("subType").unique();
     t.string("title").notNullable().unique();
+    t.specificType("bonuses", "int ARRAY").notNullable();
+    t.string("size");
+    t.specificType("speeds", "int ARRAY").notNullable();
     t.timestamp("createdAt").notNullable().defaultTo(knex.fn.now());
     t.timestamp("updatedAt").notNullable().defaultTo(knex.fn.now());
   });

@@ -11,7 +11,8 @@
     t.bigIncrements("id");
     t.string("subType").unique();
     t.string("title").notNullable().unique();
-    t.integer("hitDie").notNullable();
+    t.string("hitDie").notNullable();
+    t.integer("skillChoices").notNullable();
     t.timestamp("createdAt").notNullable().defaultTo(knex.fn.now());
     t.timestamp("updatedAt").notNullable().defaultTo(knex.fn.now());
   });
