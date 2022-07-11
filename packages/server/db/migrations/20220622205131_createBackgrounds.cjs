@@ -11,10 +11,6 @@ exports.up = async (knex) => {
     t.bigIncrements("id");
     t.string("subType").unique();
     t.string("title").notNullable().unique();
-    t.text("traits").notNullable();
-    t.text("ideals").notNullable();
-    t.text("bonds").notNullable();
-    t.text("flaws").notNullable();
     t.timestamp("createdAt").notNullable().defaultTo(knex.fn.now());
     t.timestamp("updatedAt").notNullable().defaultTo(knex.fn.now());
   });

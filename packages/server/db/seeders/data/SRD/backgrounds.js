@@ -49,11 +49,13 @@ const backgrounds = {
             "Insight",
             "Religion"
         ],
-        "Tools": [],
-        "Languages": [
-            "Language Choice",
-            "Language Choice"
-        ]
+        "Proficiencies": {
+            "Tools": [],
+            "Languages": [
+                "CHOICE",
+                "CHOICE"
+            ]
+        }
     }
 }
 
