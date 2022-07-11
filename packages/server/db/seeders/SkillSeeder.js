@@ -1,5 +1,5 @@
 import Skill from "../models/Skill.js";
-import { skills } from "./SRD/data.js";
+import { skills } from "./data/SRD/index.js";
 
 class SkillSeeder {
   static async seed() {

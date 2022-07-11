@@ -1,5 +1,5 @@
 import SpellLevel from "../models/SpellLevel.js";
-import { spellLevels } from "./SRD/data.js";
+import { spellLevels } from "./data/SRD/index.js";
 
 class SpellLevelSeeder {
   static async seed() {

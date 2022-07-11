@@ -1,5 +1,5 @@
 import Spell from "../models/Spell.js";
-import { spells } from "./SRD/data.js";
+import { spells } from "./data/SRD/index.js";
 
 class SpellSeeder {
   static async seed() {

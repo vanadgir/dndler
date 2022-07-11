@@ -1,15 +1,13 @@
 import Equipment from "../models/Equipment.js";
-import { equipment } from "./SRD/data.js";
+import { equipments } from "./data/SRD/index.js";
 
 class EquipmentSeeder {
   static async seed() {
     for (const equipmentCategory of ["Weapon", "Armor"]) {
-      for (const subCategory in equipment[equipmentCategory]) {
-        for (const equipmentTitle in equipment[equipmentCategory][
-          subCategory
-        ]) {
+      for (const subCategory in equipments[equipmentCategory]) {
+        for (const equipmentTitle in equipments[equipmentCategory][subCategory]) {
           const thisEquipment =
-            equipment[equipmentCategory][subCategory][equipmentTitle];
+            equipments[equipmentCategory][subCategory][equipmentTitle];
           const currentEquipment = await Equipment.query().findOne({
             title: equipmentTitle,
           });
@@ -18,7 +16,7 @@ class EquipmentSeeder {
             await Equipment.query().insert({
               ...thisEquipment,
               title: equipmentTitle,
-              category: `${subCategory} ${equipmentCategory}`
+              category: `${subCategory} ${equipmentCategory}`,
             });
           }
         }

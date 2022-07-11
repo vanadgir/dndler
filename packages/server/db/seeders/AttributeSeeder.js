@@ -1,5 +1,5 @@
 import Attribute from "../models/Attribute.js";
-import { attributes } from "./SRD/data.js";
+import { attributes } from "./data/SRD/index.js";
 
 class AttributeSeeder {
   static async seed() {

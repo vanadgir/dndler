@@ -1,5 +1,5 @@
 import Feature from "../models/Feature.js";
-import { features } from "./SRD/data.js";
+import { features } from "./data/SRD/index.js";
 
 class FeatureSeeder {
   static async seed() {
