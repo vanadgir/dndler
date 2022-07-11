@@ -13,9 +13,9 @@ const classes = {
         },
         "Equipment": [
             "Explorer's Pack",
-            "Javelin (4)",
+            "Javelin(4)",
             ["Greataxe", "Martial Melee"],
-            ["Handaxe (2)", "Simple"]
+            ["Handaxe(2)", "Simple"]
         ],
         "Features": {
             1: ["Rage", "Unarmored Defense (Barbarian)"],
@@ -99,7 +99,7 @@ const classes = {
             "Holy Symbol",
             ["Mace", "Warhammer"],
             ["Scale Mail", "Leather Armor", "Chain Mail"],
-            [["Light Crossbow", "Bolt (20)"], "Simple"],
+            [["Light Crossbow", "Bolt(20)"], "Simple"],
             ["Priest's Pack", "Explorer's Pack"]
         ],
         "Features": {
@@ -180,9 +180,9 @@ const classes = {
             }
         },
         "Equipment": [
-            ["Chain Mail", ["Leather Armor", "Longbow", "Bolt (20)"]],
+            ["Chain Mail", ["Leather Armor", "Longbow", "Bolt(20)"]],
             [["Martial", "Shield"], ["Martial", "Martial"]],
-            [["Light Crossbow", "Bolt (20)"], "Handaxe (2)"]
+            [["Light Crossbow", "Bolt(20)"], "Handaxe(2)"]
         ],
         "Features": {
             1: ["Fighting Style (Fighter)", "Second Wind"],
@@ -220,7 +220,7 @@ const classes = {
             }
         },
         "Equipment": [
-            "Dart (10)",
+            "Dart(10)",
             ["Shortsword", "Simple"],
             ["Dungeoneer's Pack", "Explorer's Pack"]
         ],
@@ -263,7 +263,7 @@ const classes = {
             "Chain Mail",
             "Holy Symbol",
             [["Martial", "Shield"], ["Martial", "Martial"]],
-            ["Javelin (5)", "Simple"],
+            ["Javelin(5)", "Simple"],
             ["Priest's Pack", "Explorer's Pack"]
         ],
         "Features": {
@@ -304,9 +304,9 @@ const classes = {
         "Equipment": [
             "Longbow",
             "Quiver",
-            "Arrow (20)",
+            "Arrow(20)",
             ["Scale Mail", "Leather Armor"],
-            ["Shortsword (2)", ["Simple", "Simple"]],
+            ["Shortsword(2)", ["Simple", "Simple"]],
             ["Dungeoneer's Pack", "Explorer's Pack"]
         ],
         "Features": {
@@ -346,10 +346,10 @@ const classes = {
         },
         "Equipment": [
             "Leather Armor",
-            "Dagger (2)",
+            "Dagger(2)",
             "Thieves' Tools",
             ["Rapier", "Shortsword"],
-            [["Shortbow", "Arrow (20)"], "Shortsword"],
+            [["Shortbow", "Arrow(20)"], "Shortsword"],
             ["Burglar's Pack", "Dungeoneer's Pack", "Explorer's Pack"]
         ],
         "Features": {
@@ -388,8 +388,8 @@ const classes = {
             }
         },
         "Equipment": [
-            "Dagger (2)",
-            [["Light Crossbow", "Bolt (20)"], "Simple"],
+            "Dagger(2)",
+            [["Light Crossbow", "Bolt(20)"], "Simple"],
             ["Component Pouch", "Arcane Focus"],
             ["Dungeoneer's Pack", "Explorer's Pack"]
         ],
@@ -431,7 +431,7 @@ const classes = {
         "Equipment": [
             "Leather Armor",
             "Simple",
-            [["Light Crossbow", "Bolt (20)"], "Simple"],
+            [["Light Crossbow", "Bolt(20)"], "Simple"],
             ["Component Pouch", "Arcane Focus"],
             ["Scholar's Pack", "Dungeoneer's Pack"]
         ],

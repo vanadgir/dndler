@@ -56,6 +56,30 @@ const skills = [
     attributeId: "CHA"
   },
   {
+    title: "Saving Throw - STR",
+    attributeId: "STR"
+  },
+  {
+    title: "Saving Throw - DEX",
+    attributeId: "DEX"
+  },
+  {
+    title: "Saving Throw - CON",
+    attributeId: "CON"
+  },
+  {
+    title: "Saving Throw - INT",
+    attributeId: "INT"
+  },
+  {
+    title: "Saving Throw - WIS",
+    attributeId: "WIS"
+  },
+  {
+    title: "Saving Throw - CHA",
+    attributeId: "CHA"
+  },
+  {
     title: "Sleight of Hand",
     attributeId: "DEX"
   },
