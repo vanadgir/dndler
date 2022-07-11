@@ -22,7 +22,7 @@ class ClassEquipment extends Model {
         relation: Model.BelongsToOneRelation,
         modelClass: Equipment,
         join: {
-          from: "classEquipments.equipmentId",
+          from: "classEquipments.equipmentIds",
           to: "equipments.id",
         },
       },
