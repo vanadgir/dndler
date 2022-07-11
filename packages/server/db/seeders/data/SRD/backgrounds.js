@@ -37,7 +37,7 @@ const backgrounds = {
         "Gear": [
             "Holy Symbol",
             "Prayer Book or Prayer Wheel",
-            "Stick of Incense (5)",
+            "Stick of Incense(5)",
             "Vestments",
             "Set of Common Clothes",
             "15 GP"
