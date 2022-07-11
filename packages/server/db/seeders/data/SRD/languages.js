@@ -1,4 +1,5 @@
 const languages = [
+  "CHOICE",
   "Common",
   "Dwarvish",
   "Elvish",

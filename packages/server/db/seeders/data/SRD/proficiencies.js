@@ -1,3 +1,6 @@
+import languages from "./languages.js";
+import { artisan, gaming, instrument } from "./tools.js";
+
 const proficiencies = {
   Armor: [
     "Light",
@@ -5,6 +8,10 @@ const proficiencies = {
     "Heavy",
     "Shield"
   ],
+  "Artisan's Tools": artisan,
+  "Gaming Sets": gaming,
+  Languages: languages,
+  "Musical Instruments": instrument,
   Weapons: [
     "Simple",
     "Martial",

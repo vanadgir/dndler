@@ -11,6 +11,7 @@
     t.bigIncrements("id");
     t.string("title").notNullable().unique();
     t.string("category").notNullable();
+    t.text("description").notNullable();
     t.timestamp("createdAt").notNullable().defaultTo(knex.fn.now());
     t.timestamp("updatedAt").notNullable().defaultTo(knex.fn.now());
   });
