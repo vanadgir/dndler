@@ -24,5 +24,4 @@ apiRouter_v1.get("/races", (req, res) => {
 apiRouter_v1.use("/character", characterRouter);
 apiRouter_v1.use("/characters", charIndexRouter);
 
-
 export default apiRouter_v1;
