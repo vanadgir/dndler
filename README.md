@@ -13,8 +13,10 @@ the client runs on `localhost:3000` and the api on `localhost:8000`
 
 have fun
 
-# Currently Being Updated
-As of June 1, 2022, the dndler is in the process of being rebuilt. A current iteration is working using React, but many more features exist on our roadmap.
+# Development On Hold
+With Stage 1 of our roadmap complete, we have a working prototype hosted at [dndler.app](https://dndler.app/) and are focusing on other projects in the meantime. Please be on the lookout for future development updates!
+
+# Roadmap
 
 ![roadmap](dndler_roadmap.png)
 
