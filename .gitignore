@@ -142,3 +142,4 @@ data/lastnames.json
 #build output
 build/
 .env.dev
+*.zip
