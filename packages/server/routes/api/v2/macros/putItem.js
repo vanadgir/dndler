@@ -21,7 +21,6 @@ fetch(url, {
 const items = {};
 
 itemsIds.forEach(function (item) {
-  const itemToString = game.items.get(item).id.toString();
   Object.keys(items).includes(
     game.items.get(item).type)
       ? (items[game.items.get(item).type].push(game.items.get(item).name))
