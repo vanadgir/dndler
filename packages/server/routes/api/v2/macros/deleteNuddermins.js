@@ -1,3 +1,5 @@
-game.actors.filter((i) => i.type === "character").forEach((i) => {
-  game.actors.get(i.id).delete();
-})
+game.actors
+  .filter((a) => a.type === "character" && a.name.includes("DNDLER: "))
+  .forEach((a) => {
+    game.actors.get(a.id).delete();
+  });
