@@ -53,21 +53,19 @@ function mapProfTraits(otherProfs) {
   // size: "med",
   // weaponProf: { value: Set("sim", "mar"), custom: "Ergori bola;
   const armorProf = {
-    value: new Set(otherProfs["Armor"].map((ap) => armorRecord[ap])),
+    value: otherProfs["Armor"].map((ap) => armorRecord[ap]),
   };
   const languages = {
-    value: new Set(...otherProfs["Languages"]),
+    value: otherProfs["Languages"],
   };
   const weaponProf = {
-    value: new Set(
-      ...otherProfs["Weapons"].map((wp) => {
-        if (wp === "Simple" || wp === "Martial") {
-          return weaponRecord[wp];
-        } else {
-          return wp.toLowerCase();
-        }
-      })
-    ),
+    value: otherProfs["Weapons"].map((wp) => {
+      if (wp === "Simple" || wp === "Martial") {
+        return weaponRecord[wp];
+      } else {
+        return wp.toLowerCase();
+      }
+    }),
   };
   return {
     armorProf,
@@ -262,7 +260,6 @@ async function generateCharacter() {
     const classFeatures = mapClassFeatures(charClass, data["level"]);
     const currency = getCurrency(data["equipment"]);
     const inventory = await mapInventory(data["equipment"]);
-    console.log(inventory);
     const items = [charClass, ...classFeatures, ...inventory];
 
     await createActor(
