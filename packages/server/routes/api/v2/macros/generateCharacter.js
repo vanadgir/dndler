@@ -11,6 +11,125 @@ async function fetchDndler() {
   }
 }
 
+function mapAbilities(abilities, profThrows) {
+  return Object.keys(abilities).reduce((accumulator, current) => {
+    return {
+      ...accumulator,
+      [current.toLowerCase()]: {
+        value: abilities[current],
+        proficient: profThrows.includes(current) ? 1 : 0,
+      },
+    };
+  }, {});
+}
+
+function mapMovement(movement) {
+  return Object.keys(movement).reduce((accumulator, current) => {
+    return { ...accumulator, [current.toLowerCase()]: movement[current] };
+  }, {});
+}
+
+function mapAttributes(movement, hitpoints) {
+  return {
+    movement: mapMovement(movement),
+    ac: {
+      flat: 10,
+    },
+    hp: {
+      value: hitpoints,
+      max: hitpoints,
+    },
+    init: {
+      ability: "dex",
+      bonus: 0,
+    },
+  };
+}
+
+function mapBonuses() {
+  return {
+    abilities: { check: "", save: "", skill: "" },
+    msak: { attack: "", damage: "" },
+    mwak: { attack: "", damage: "" },
+    rsak: { attack: "", damage: "" },
+    rwak: { attack: "", damage: "" },
+  };
+}
+
+function getCurrency(equipment) {
+  return equipment.reduce(
+    (accumulator, current) => {
+      if (current.includes(" GP")) {
+        return {
+          ...accumulator,
+          gp: accumulator.gp + parseInt(current.split(" GP")[0]),
+        };
+      } else {
+        return accumulator;
+      }
+    },
+    { gp: 0, sp: 0, pp: 0, cp: 0 },
+  );
+}
+
+function mapDetails(race, background) {
+  return {
+    race,
+    background: background["Name"],
+    ideal: background["Ideal"],
+    trait: background["Trait"],
+    bond: background["Bond"],
+    flaw: background["Flaw"],
+  };
+}
+
+function getCharClass(className) {
+  return game.items.find((i) => i.name === className).toObject();
+}
+
+function mapClassFeatures(c, level) {
+  c.system.levels = level;
+  c.system.hitDice = `${level}${c.system.hitDice}`;
+  const compendiumFeatures = game.packs.get("dnd5e.classfeatures");
+  return c.system.advancement
+    .filter(
+      (cf) =>
+        cf.level !== undefined &&
+        cf.level > 0 &&
+        cf.level <= level &&
+        cf.title === "Features",
+    )
+    .reduce(
+      (items, cf) => [
+        ...items,
+        ...cf.configuration.items.map((i) => {
+          const key = i.split("classfeatures.")[1];
+          return game.items
+            .find((i) => i.name === compendiumFeatures.index.get(key).name)
+            .toObject();
+        }),
+      ],
+      [],
+    );
+}
+
+async function mapInventory(equipment) {
+  return equipment
+    .map((e) => {
+      let quantity;
+      if (e.includes(" (")) {
+        quantity = e.split(" (")[1].split(")")[0];
+        e = e.split(" (")[0];
+      }
+      const item = game.items.find((i) => i.name === e)?.toObject();
+      if (item !== undefined && quantity !== undefined) {
+        item.system.quantity = quantity;
+      }
+      return item;
+    })
+    .filter((e) => e !== undefined);
+}
+
 function mapProfSkills(profSkills) {
   return profSkills
     .map((ps) => ps.substring(0, 3).toLowerCase())
@@ -74,87 +193,17 @@ function mapProfTraits(otherProfs) {
   };
 }
 
-function mapMovement(movement) {
-  return Object.keys(movement).reduce((accumulator, current) => {
-    return { ...accumulator, [current.toLowerCase()]: movement[current] };
-  }, {});
-}
-
-function getCharClass(className) {
-  return game.items.find((i) => i.name === className).toObject();
-}
-
-function mapClassFeatures(c, level) {
-  c.system.levels = level;
-  c.system.hitDice = `${level}${c.system.hitDice}`;
-  const compendiumFeatures = game.packs.get("dnd5e.classfeatures");
-  return c.system.advancement
-    .filter(
-      (cf) =>
-        cf.level !== undefined &&
-        cf.level > 0 &&
-        cf.level <= level &&
-        cf.title === "Features"
-    )
-    .reduce(
-      (items, cf) => [
-        ...items,
-        ...cf.configuration.items.map((i) => {
-          const key = i.split("classfeatures.")[1];
-          return game.items
-            .find((i) => i.name === compendiumFeatures.index.get(key).name)
-            .toObject();
-        }),
-      ],
-      []
-    );
-}
-
-function getCurrency(equipment) {
-  return equipment.reduce(
-    (accumulator, current) => {
-      if (current.includes(" GP")) {
-        return {
-          ...accumulator,
-          gp: accumulator.gp + parseInt(current.split(" GP")[0]),
-        };
-      } else {
-        return accumulator;
-      }
-    },
-    { gp: 0, sp: 0, pp: 0, cp: 0 }
-  );
-}
-
-async function mapInventory(equipment) {
-  return equipment
-    .map((e) => {
-      let quantity;
-      if (e.includes(" (")) {
-        quantity = e.split(" (")[1].split(")")[0];
-        e = e.split(" (")[0];
-      }
-      const item = game.items.find((i) => i.name === e)?.toObject();
-      if (item !== undefined && quantity !== undefined) {
-        item.system.quantity = quantity;
-      }
-      return item;
-    })
-    .filter((e) => e !== undefined);
-}
-
 async function createActor(
-  name,
-  data,
-  background,
   abilities,
-  profSkills,
-  profThrows,
-  profTools,
-  profTraits,
-  movement,
+  attributes,
+  bonuses,
   currency,
-  items
+  details,
+  items,
+  name,
+  skills,
+  tools,
+  traits,
 ) {
   try {
     await Actor.implementation.create({
@@ -166,63 +215,14 @@ async function createActor(
         name: name,
       },
       system: {
-        abilities: {
-          str: {
-            value: abilities["STR"],
-            proficient: profThrows.includes("STR") ? 1 : 0,
-          },
-          dex: {
-            value: abilities["DEX"],
-            proficient: profThrows.includes("DEX") ? 1 : 0,
-          },
-          con: {
-            value: abilities["CON"],
-            proficient: profThrows.includes("CON") ? 1 : 0,
-          },
-          int: {
-            value: abilities["INT"],
-            proficient: profThrows.includes("INT") ? 1 : 0,
-          },
-          wis: {
-            value: abilities["WIS"],
-            proficient: profThrows.includes("WIS") ? 1 : 0,
-          },
-          cha: {
-            value: abilities["CHA"],
-            proficient: profThrows.includes("CHA") ? 1 : 0,
-          },
-        },
-        attributes: {
-          ac: {
-            flat: 10,
-          },
-          hp: {
-            value: data["hitpoints"],
-            max: data["hitpoints"],
-          },
-          init: {
-            ability: "dex",
-            bonus: 0,
-          },
-          movement,
-        },
-        bonuses: {
-          abilities: { check: "", save: "", skill: "" },
-          msak: { attack: "", damage: "" },
-          mwak: { attack: "", damage: "" },
-          rsak: { attack: "", damage: "" },
-          rwak: { attack: "", damage: "" },
-        },
+        abilities,
+        attributes,
+        bonuses,
         currency,
-        details: {
-          race: data.race,
-          background: background["Name"],
-          ideal: background["Ideal"],
-          trait: background["Trait"],
-          bond: background["Bond"],
-          flaw: background["Flaw"],
-        },
-        skills: profSkills,
+        details,
+        skills,
+        tools,
+        traits,
         spells: {
           // represent slots, not entries
           // spell entries are in items
@@ -236,8 +236,6 @@ async function createActor(
           },
           // ...etc,
         },
-        tools: profTools,
-        traits: profTraits,
       },
     });
   } catch (e) {
@@ -249,31 +247,38 @@ async function generateCharacter() {
   try {
     const data = await fetchDndler();
 
-    const background = data["background"];
-    const abilities = data["stats"]["Total Stats"];
-    const profThrows = data["proficiency"]["Proficient Throws"];
-    const profSkills = mapProfSkills(data["proficiency"]["Proficient Skills"]);
-    const profTools = mapProfTools(data["proficiency"]["Other"]["Tools"]);
-    const profTraits = mapProfTraits(data["proficiency"]["Other"]);
-    const movement = mapMovement(data["speed"]);
+    const abilities = mapAbilities(
+      data["stats"]["Total Stats"],
+      data["proficiency"]["Proficient Throws"],
+    );
+    const attributes = mapAttributes(
+      mapMovement(data["speed"]),
+      data["hitpoints"],
+    );
+    const bonuses = mapBonuses();
+    const currency = getCurrency(data["equipment"]);
+    const details = mapDetails(data["race"], data["background"]);
+
     const charClass = getCharClass(data["class"]);
     const classFeatures = mapClassFeatures(charClass, data["level"]);
-    const currency = getCurrency(data["equipment"]);
     const inventory = await mapInventory(data["equipment"]);
     const items = [charClass, ...classFeatures, ...inventory];
 
+    const profSkills = mapProfSkills(data["proficiency"]["Proficient Skills"]);
+    const profTools = mapProfTools(data["proficiency"]["Other"]["Tools"]);
+    const profTraits = mapProfTraits(data["proficiency"]["Other"]);
+
     await createActor(
-      data["name"],
-      data,
-      background,
       abilities,
+      attributes,
+      bonuses,
+      currency,
+      details,
+      items,
+      data["name"],
       profSkills,
-      profThrows,
       profTools,
       profTraits,
-      movement,
-      currency,
-      items
     );
   } catch (error) {
     console.error("Error in generateCharacter():", error);
