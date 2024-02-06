@@ -1,97 +1,287 @@
-async function generateCharacter() {
+async function fetchDndler() {
   const url = "http://localhost:8000/api/v2/nuddermin";
 
   try {
     const response = await fetch(url);
     const data = await response.json();
+    console.log(data);
+    return data;
+  } catch (e) {
+    console.error("Error fetching data", e);
+  }
+}
 
-    const charAbilities = data["stats"]["Total Stats"];
-    const charProfThrows = data["proficiency"]["Proficient Throws"];
-    const charClass = game.items
-      .find((i) => i.name === data["class"])
-      .toObject();
-    const level = data["level"];
-    charClass.system.levels = level;
-    charClass.system.hitDice = `${level}${charClass.system.hitDice}`;
-    const compendiumFeatures = game.packs.get("dnd5e.classfeatures");
-    const classFeatures = [];
-    charClass.system.advancement
-      .filter(
-        (cf) =>
-          cf.level !== undefined &&
-          cf.level > 0 &&
-          cf.level <= level &&
-          cf.title === "Features"
-      )
-      .forEach((cf) =>
-        cf.configuration.items.forEach((i) => {
+function mapAbilities(abilities, profThrows) {
+  return Object.keys(abilities).reduce((accumulator, current) => {
+    return {
+      ...accumulator,
+      [current.toLowerCase()]: {
+        value: abilities[current],
+        proficient: profThrows.includes(current) ? 1 : 0,
+      },
+    };
+  }, {});
+}
+
+function mapMovement(movement) {
+  return Object.keys(movement).reduce((accumulator, current) => {
+    return { ...accumulator, [current.toLowerCase()]: movement[current] };
+  }, {});
+}
+
+function mapAttributes(movement, hitpoints) {
+  return {
+    movement: mapMovement(movement),
+    ac: {
+      flat: 10,
+    },
+    hp: {
+      value: hitpoints,
+      max: hitpoints,
+    },
+    init: {
+      ability: "dex",
+      bonus: 0,
+    },
+  };
+}
+
+function mapBonuses() {
+  return {
+    abilities: { check: "", save: "", skill: "" },
+    msak: { attack: "", damage: "" },
+    mwak: { attack: "", damage: "" },
+    rsak: { attack: "", damage: "" },
+    rwak: { attack: "", damage: "" },
+  };
+}
+
+function getCurrency(equipment) {
+  return equipment.reduce(
+    (accumulator, current) => {
+      if (current.includes(" GP")) {
+        return {
+          ...accumulator,
+          gp: accumulator.gp + parseInt(current.split(" GP")[0]),
+        };
+      } else {
+        return accumulator;
+      }
+    },
+    { gp: 0, sp: 0, pp: 0, cp: 0 },
+  );
+}
+
+function mapDetails(race, background) {
+  return {
+    race,
+    background: background["Name"],
+    ideal: background["Ideal"],
+    trait: background["Trait"],
+    bond: background["Bond"],
+    flaw: background["Flaw"],
+  };
+}
+
+function getCharClass(className) {
+  return game.items.find((i) => i.name === className).toObject();
+}
+
+function mapClassFeatures(c, level) {
+  c.system.levels = level;
+  c.system.hitDice = `${level}${c.system.hitDice}`;
+  const compendiumFeatures = game.packs.get("dnd5e.classfeatures");
+  return c.system.advancement
+    .filter(
+      (cf) =>
+        cf.level !== undefined &&
+        cf.level > 0 &&
+        cf.level <= level &&
+        cf.title === "Features",
+    )
+    .reduce(
+      (items, cf) => [
+        ...items,
+        ...cf.configuration.items.map((i) => {
           const key = i.split("classfeatures.")[1];
-          const featureItem = game.items.find(i => i.name === compendiumFeatures.index.get(key).name);
-          classFeatures.push(featureItem.toObject());
-        })
-      );
+          return game.items
+            .find((i) => i.name === compendiumFeatures.index.get(key).name)
+            .toObject();
+        }),
+      ],
+      [],
+    );
+}
 
+async function mapInventory(equipment) {
+  return equipment
+    .map((e) => {
+      let quantity;
+      if (e.includes(" (")) {
+        quantity = e.split(" (")[1].split(")")[0];
+        e = e.split(" (")[0];
+      }
+      const item = game.items.find((i) => i.name === e)?.toObject();
+      if (item !== undefined && quantity !== undefined) {
+        item.system.quantity = quantity;
+      }
+      return item;
+    })
+    .filter((e) => e !== undefined);
+}
+
+function mapProfSkills(profSkills) {
+  return profSkills
+    .map((ps) => ps.substring(0, 3).toLowerCase())
+    .reduce((newDict, skillName) => {
+      return {
+        ...newDict,
+        [skillName]: {
+          value: 1,
+        },
+      };
+    }, {});
+}
+
+function mapProfTools(profTools) {
+  return {};
+}
+
+const armorRecord = {
+  Light: "lgt",
+  Medium: "med",
+  Heavy: "hvy",
+  Shield: "shel",
+};
+
+const weaponRecord = {
+  Simple: "sim",
+  Martial: "mar",
+};
+
+function mapProfTraits(otherProfs) {
+  // armorProf: Set("lgt", "med", "hvy", "shel"),
+  // ci: Set("diseased", "poisoned", etc), // condition immunities
+  // di: Set("fire", "poison", etc), // damage immunities
+  // dr: Set("cold", "piercing", etc), // damage resistances
+  // dv: Set("force", "bludgeoning", etc), // damage vulnerabilities
+  // languages: {
+  //   value: Set("Common", "Elvish", etc),
+  //   custom: "Rumani; Novani; etc",
+  // },
+  // size: "med",
+  // weaponProf: { value: Set("sim", "mar"), custom: "Ergori bola;
+  const armorProf = {
+    value: otherProfs["Armor"].map((ap) => armorRecord[ap]),
+  };
+  const languages = {
+    value: otherProfs["Languages"],
+  };
+  const weaponProf = {
+    value: otherProfs["Weapons"].map((wp) => {
+      if (wp === "Simple" || wp === "Martial") {
+        return weaponRecord[wp];
+      } else {
+        return wp.toLowerCase();
+      }
+    }),
+  };
+  return {
+    armorProf,
+    languages,
+    weaponProf,
+  };
+}
+
+async function createActor(
+  abilities,
+  attributes,
+  bonuses,
+  currency,
+  details,
+  items,
+  name,
+  skills,
+  tools,
+  traits,
+) {
+  try {
     await Actor.implementation.create({
-      name: data.name,
+      items, // this represents foundryVTT 'items',
+      // ie spells, features, in-game items, etc.
+      name: `DNDLER: ${name}`,
       type: "character",
       prototypeToken: {
-        name: data.name,
+        name: name,
       },
-      items: [charClass, ...classFeatures],
       system: {
-        abilities: {
-          str: {
-            value: charAbilities["STR"],
-            proficient: charProfThrows.includes("STR") ? 1 : 0,
+        abilities,
+        attributes,
+        bonuses,
+        currency,
+        details,
+        skills,
+        tools,
+        traits,
+        spells: {
+          // represent slots, not entries
+          // spell entries are in items
+          pact: {
+            value: 0,
+            override: null,
           },
-          dex: {
-            value: charAbilities["DEX"],
-            proficient: charProfThrows.includes("DEX") ? 1 : 0,
+          spell1: {
+            value: 0,
+            override: null,
           },
-          con: {
-            value: charAbilities["CON"],
-            proficient: charProfThrows.includes("CON") ? 1 : 0,
-          },
-          int: {
-            value: charAbilities["INT"],
-            proficient: charProfThrows.includes("INT") ? 1 : 0,
-          },
-          wis: {
-            value: charAbilities["WIS"],
-            proficient: charProfThrows.includes("WIS") ? 1 : 0,
-          },
-          cha: {
-            value: charAbilities["CHA"],
-            proficient: charProfThrows.includes("CHA") ? 1 : 0,
-          },
-        },
-        attributes: {
-          ac: {
-            flat: 10,
-          },
-          hp: {
-            value: data["hitpoints"],
-            max: data["hitpoints"],
-          },
-          init: {
-            ability: "dex",
-          },
-        },
-        bonuses: {},
-        currency: {},
-        details: {
-          race: data.race,
-          background: data["background"]["Name"],
-          ideal: data["background"]["Ideal"],
-          trait: data["background"]["Trait"],
-          bond: data["background"]["Bond"],
-          flaw: data["background"]["Flaw"],
+          // ...etc,
         },
       },
     });
+  } catch (e) {
+    console.error("Error creating FoundryVTT Actor:", e);
+  }
+}
+
+async function generateCharacter() {
+  try {
+    const data = await fetchDndler();
+
+    const abilities = mapAbilities(
+      data["stats"]["Total Stats"],
+      data["proficiency"]["Proficient Throws"],
+    );
+    const attributes = mapAttributes(
+      mapMovement(data["speed"]),
+      data["hitpoints"],
+    );
+    const bonuses = mapBonuses();
+    const currency = getCurrency(data["equipment"]);
+    const details = mapDetails(data["race"], data["background"]);
+
+    const charClass = getCharClass(data["class"]);
+    const classFeatures = mapClassFeatures(charClass, data["level"]);
+    const inventory = await mapInventory(data["equipment"]);
+    const items = [charClass, ...classFeatures, ...inventory];
+
+    const profSkills = mapProfSkills(data["proficiency"]["Proficient Skills"]);
+    const profTools = mapProfTools(data["proficiency"]["Other"]["Tools"]);
+    const profTraits = mapProfTraits(data["proficiency"]["Other"]);
+
+    await createActor(
+      abilities,
+      attributes,
+      bonuses,
+      currency,
+      details,
+      items,
+      data["name"],
+      profSkills,
+      profTools,
+      profTraits,
+    );
   } catch (error) {
-    console.error("Error fetching data:", error);
-    return null;
+    console.error("Error in generateCharacter():", error);
   }
 }
 
